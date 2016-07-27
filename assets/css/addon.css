@@ -10,3 +10,11 @@
 #avatar {
   border-radius: 1em;
 }
+
+#index-ul li{
+  border: none;
+}
+
+.math {
+  font-size: 20px;
+}
