@@ -22,176 +22,217 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <header id="header">
       <h1><a href="index.html">Back to Index</a></h1>
       <!-- <nav>
-        <a href="#menu">Menu</a>
-      </nav> -->
-    </header>
-
-    <!-- Menu -->
-    <!-- <nav id="menu">
-      <div class="inner">
-        <h2>Menu</h2>
-        <ul class="links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="generic.html">Generic</a></li>
-          <li><a href="elements.html">Elements</a></li>
-          <li><a href="#">Log In</a></li>
-          <li><a href="#">Sign Up</a></li>
-        </ul>
-        <a href="#" class="close">Close</a>
-      </div>
+      <a href="#menu">Menu</a>
     </nav> -->
+  </header>
 
-    <!-- Wrapper -->
-    <section id="wrapper">
-      <header>
-        <div class="inner">
-          <h2>Logistic Regression</h2>
-          <p>A classification algorithm in Machine Learning</p>
-        </div>
-      </header>
+  <!-- Menu -->
+  <!-- <nav id="menu">
+  <div class="inner">
+  <h2>Menu</h2>
+  <ul class="links">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="generic.html">Generic</a></li>
+  <li><a href="elements.html">Elements</a></li>
+  <li><a href="#">Log In</a></li>
+  <li><a href="#">Sign Up</a></li>
+</ul>
+<a href="#" class="close">Close</a>
+</div>
+</nav> -->
 
-      <!-- Content -->
-      <div class="wrapper">
-        <div class="inner">
+<!-- Wrapper -->
+<section id="wrapper">
+  <header>
+    <div class="inner">
+      <h2>Logistic Regression</h2>
+      <p>A classification algorithm in Machine Learning</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="wrapper">
+    <div class="inner">
+
+      <section>
+        <h3 class="major">The Classification Problem: Win or Loss?</h3>
+        <p>
+          Coming soon...
+        </p>
+        <p id="sigmoid"></p>
+        <p id="hypothesis"></p>
+        <p id="theta-T-x"></p>
+        <p id="probability"></p>
+        <p id="cost-function"></p>
+        <p id="gradient"></p>
+        <p id="gradient-descent"></p>
+        <p id="algorithm-1"></p>
+        <p id="algorithm-2"></p>
+
+        <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+          This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+          This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+          <h4>Blockquote</h4>
+          <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+          <h4>Preformatted</h4>
+          <pre><code>i = 0;
+
+            while (!deck.isInOrder()) {
+              print 'Iteration ' + i;
+              deck.shuffle();
+              i++;
+            }
+
+            print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+          </section>
 
           <section>
-            <h3 class="major">The Classification Problem: Win or Loss?</h3>
-            <p>
-              Coming soon...
-            </p>
-            <p className="math" id="eqn"></p>
-            <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-              This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-              This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-              <h4>Blockquote</h4>
-              <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-              <h4>Preformatted</h4>
-              <pre><code>i = 0;
-
-                while (!deck.isInOrder()) {
-                  print 'Iteration ' + i;
-                  deck.shuffle();
-                  i++;
-                }
-
-                print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-              </section>
-
-              <section>
-                <h3 class="major">Lists</h3>
-                <div class="row">
-                  <div class="6u 12u$(medium)">
-                    <h4>Unordered</h4>
-                    <ul>
-                      <li>Dolor pulvinar etiam.</li>
-                      <li>Sagittis adipiscing.</li>
-                      <li>Felis enim feugiat.</li>
-                    </ul>
-                    <h4>Alternate</h4>
-                    <ul class="alt">
-                      <li>Dolor pulvinar etiam.</li>
-                      <li>Sagittis adipiscing.</li>
-                      <li>Felis enim feugiat.</li>
-                    </ul>
-                  </div>
-                  <div class="6u$ 12u$(medium)">
-                    <h4>Ordered</h4>
-                    <ol>
-                      <li>Dolor pulvinar etiam.</li>
-                      <li>Etiam vel felis viverra.</li>
-                      <li>Felis enim feugiat.</li>
-                      <li>Dolor pulvinar etiam.</li>
-                      <li>Etiam vel felis lorem.</li>
-                      <li>Felis enim et feugiat.</li>
-                    </ol>
-                  </div>
-                </div>
-              </section>
-
-              <section>
-                <h3 class="major">Data</h3>
-                <div class="table-wrapper">
-                  <table class="alt">
-                    <thead>
-                      <tr>
-                        <th>Match</th>
-                        <th>Team gold earned per sec</th>
-                        <th>Team KDA</th>
-                        <th>Team CS per min</th>
-                        <th>Win/Loss</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Item One</td>
-                        <td>Ante turpis integer aliquet porttitor.</td>
-                        <td>29.99</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                      </tr>
-                      <tr>
-                        <td>Item Two</td>
-                        <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                        <td>19.99</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                      </tr>
-                      <tr>
-                        <td>Item Three</td>
-                        <td> Morbi faucibus arcu accumsan lorem.</td>
-                        <td>29.99</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                      </tr>
-                      <tr>
-                        <td>Item Four</td>
-                        <td>Vitae integer tempus condimentum.</td>
-                        <td>19.99</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                      </tr>
-                      <tr>
-                        <td>Item Five</td>
-                        <td>Ante turpis integer aliquet porttitor.</td>
-                        <td>29.99</td>
-                        <td>Example</td>
-                        <td>Example</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section>
-                <h3>Graph</h3>
-              </section>
+            <h3 class="major">Lists</h3>
+            <div class="row">
+              <div class="6u 12u$(medium)">
+                <h4>Unordered</h4>
+                <ul>
+                  <li>Dolor pulvinar etiam.</li>
+                  <li>Sagittis adipiscing.</li>
+                  <li>Felis enim feugiat.</li>
+                </ul>
+                <h4>Alternate</h4>
+                <ul class="alt">
+                  <li>Dolor pulvinar etiam.</li>
+                  <li>Sagittis adipiscing.</li>
+                  <li>Felis enim feugiat.</li>
+                </ul>
+              </div>
+              <div class="6u$ 12u$(medium)">
+                <h4>Ordered</h4>
+                <ol>
+                  <li>Dolor pulvinar etiam.</li>
+                  <li>Etiam vel felis viverra.</li>
+                  <li>Felis enim feugiat.</li>
+                  <li>Dolor pulvinar etiam.</li>
+                  <li>Etiam vel felis lorem.</li>
+                  <li>Felis enim et feugiat.</li>
+                </ol>
+              </div>
             </div>
-          </div>
+          </section>
 
-        </section>
+          <section>
+            <h3 class="major">Data</h3>
+            <div class="table-wrapper">
+              <table class="alt">
+                <thead>
+                  <tr>
+                    <th>Match</th>
+                    <th>Team gold earned per sec</th>
+                    <th>Team KDA</th>
+                    <th>Team CS per min</th>
+                    <th>Win/Loss</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Item One</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td>Example</td>
+                    <td>Example</td>
+                  </tr>
+                  <tr>
+                    <td>Item Two</td>
+                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                    <td>19.99</td>
+                    <td>Example</td>
+                    <td>Example</td>
+                  </tr>
+                  <tr>
+                    <td>Item Three</td>
+                    <td> Morbi faucibus arcu accumsan lorem.</td>
+                    <td>29.99</td>
+                    <td>Example</td>
+                    <td>Example</td>
+                  </tr>
+                  <tr>
+                    <td>Item Four</td>
+                    <td>Vitae integer tempus condimentum.</td>
+                    <td>19.99</td>
+                    <td>Example</td>
+                    <td>Example</td>
+                  </tr>
+                  <tr>
+                    <td>Item Five</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td>Example</td>
+                    <td>Example</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-        <!-- Footer -->
-        <section id="footer">
-          <div class="inner">
-            <ul class="copyright">
-              <li>&copy; Calvin Feng</li>
-            </ul>
-          </div>
-        </section>
-
+          <section>
+            <h3>Graph</h3>
+          </section>
+        </div>
       </div>
 
-      <script>
-        "use strict";
-        let el = document.getElementById("eqn");
-        katex.render("\\frac{\\sqrt{c_{2}\\cdot c_{1}}}{1}", el);
-      </script>
-      <!-- Scripts -->
-      <script src="assets/js/skel.min.js"></script>
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/js/jquery.scrollex.min.js"></script>
-      <script src="assets/js/util.js"></script>
-      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-      <script src="assets/js/main.js"></script>
-    </body>
-    </html>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
+        <ul class="copyright">
+          <li>&copy; Calvin Feng</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    "use strict";
+    let sigmoid = document.getElementById('sigmoid');
+    katex.render("g(z) = \\frac{1}{1 + e^{-z}}", sigmoid);
+
+    let hypo = document.getElementById('hypothesis');
+    katex.render("h_{\\theta}(\\vec{x}) = g(\\vec{\\theta}\\cdot\\vec{x})", hypo);
+
+    let thetaTx = document.getElementById('theta-T-x');
+    katex.render(`\\vec{\\theta}\\cdot\\vec{x} = \\theta^{T}x =
+      \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}`,
+    thetaTx);
+
+    let prob = document.getElementById('probability');
+    katex.render("h_{\\theta}(\\vec{x}) = P(y = 1 | x;\\theta)", prob);
+
+    let costFunction = document.getElementById('cost-function');
+    katex.render(`J(\\theta) = \\left[\\frac{\\lambda}{2m}\\sum_{j = 1}^{n}\\theta_j^{2}\\right]
+    - \\left[ \\frac{1}{m}\\sum_{i = 1}^{m}y^{(i)}log(h_{\\theta}(x^{(i)}))
+    + (1 - y^{(i)})log(1 - h_{\\theta}(x^{(i)})) \\right]`, costFunction);
+
+    let gradient = document.getElementById('gradient');
+    katex.render(`\\nabla J(\\theta) = \\frac{\\partial J}{\\partial \\theta_{0}}\\hat{\\theta_{0}}
+    + \\frac{\\partial J}{\\partial \\theta_{1}}\\hat{\\theta_{1}}
+    + \\frac{\\partial J}{\\partial \\theta_{2}}\\hat{\\theta_{2}}
+    + \\frac{\\partial J}{\\partial \\theta_{3}}\\hat{\\theta_{3}}`, gradient);
+
+    let gradientDescent = document.getElementById('gradient-descent');
+    katex.render(`\\vec{\\theta} := \\vec{\\theta} - \\alpha\\nabla J(\\theta)`, gradientDescent);
+
+    let algo1 = document.getElementById('algorithm-1');
+    katex.render(`\\theta_{0} := \\theta_{0} - \\alpha \\left[
+    \\frac{1}{m}\\sum_{i = 1}^{m}(h_{\\theta}(x^{(i)}) - y^{(i)})x_{0}^{(i)} \\right]`,
+    algo1);
+    let algo2 = document.getElementById('algorithm-2');
+    katex.render(`\\theta_{j}`, algo2);
+  </script>
+  <!-- Scripts -->
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
