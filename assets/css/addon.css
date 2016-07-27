@@ -1,0 +1,12 @@
+.skill-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.skill-container img {
+  margin: 0px 5px 0px 5px;
+}
+
+#avatar {
+  border-radius: 1em;
+}
