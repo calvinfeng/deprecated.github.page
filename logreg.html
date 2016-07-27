@@ -117,8 +117,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             </div>
           </section>
 
-          <section>
+          <section id="data-section">
             <h3 class="major">Data</h3>
+            <div id="data-plot"></div>
             <div class="table-wrapper">
               <table class="alt">
                 <thead>
@@ -190,49 +191,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
   </div>
 
-  <script>
-    "use strict";
-    let sigmoid = document.getElementById('sigmoid');
-    katex.render("g(z) = \\frac{1}{1 + e^{-z}}", sigmoid);
-
-    let hypo = document.getElementById('hypothesis');
-    katex.render("h_{\\theta}(\\vec{x}) = g(\\vec{\\theta}\\cdot\\vec{x})", hypo);
-
-    let thetaTx = document.getElementById('theta-T-x');
-    katex.render(`\\vec{\\theta}\\cdot\\vec{x} = \\theta^{T}x =
-      \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}`,
-    thetaTx);
-
-    let prob = document.getElementById('probability');
-    katex.render("h_{\\theta}(\\vec{x}) = P(y = 1 | x;\\theta)", prob);
-
-    let costFunction = document.getElementById('cost-function');
-    katex.render(`J(\\theta) = \\left[\\frac{\\lambda}{2m}\\sum_{j = 1}^{n}\\theta_j^{2}\\right]
-    - \\left[ \\frac{1}{m}\\sum_{i = 1}^{m}y^{(i)}log(h_{\\theta}(x^{(i)}))
-    + (1 - y^{(i)})log(1 - h_{\\theta}(x^{(i)})) \\right]`, costFunction);
-
-    let gradient = document.getElementById('gradient');
-    katex.render(`\\nabla J(\\theta) = \\frac{\\partial J}{\\partial \\theta_{0}}\\hat{\\theta_{0}}
-    + \\frac{\\partial J}{\\partial \\theta_{1}}\\hat{\\theta_{1}}
-    + \\frac{\\partial J}{\\partial \\theta_{2}}\\hat{\\theta_{2}}
-    + \\frac{\\partial J}{\\partial \\theta_{3}}\\hat{\\theta_{3}}`, gradient);
-
-    let gradientDescent = document.getElementById('gradient-descent');
-    katex.render(`\\vec{\\theta} := \\vec{\\theta} - \\alpha\\nabla J(\\theta)`, gradientDescent);
-
-    let algo1 = document.getElementById('algorithm-1');
-    katex.render(`\\theta_{0} := \\theta_{0} - \\alpha \\left[
-    \\frac{1}{m}\\sum_{i = 1}^{m}(h_{\\theta}(x^{(i)}) - y^{(i)})x_{0}^{(i)} \\right]`,
-    algo1);
-    let algo2 = document.getElementById('algorithm-2');
-    katex.render(`\\theta_{j}`, algo2);
-  </script>
   <!-- Scripts -->
   <script src="assets/js/skel.min.js"></script>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="assets/js/logreg.js"></script>
   <script src="assets/js/util.js"></script>
-  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
   <script src="assets/js/main.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 </body>
 </html>
