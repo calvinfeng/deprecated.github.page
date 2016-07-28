@@ -4,6 +4,8 @@
   <title>Calvin Feng</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
   <link rel="stylesheet" href="assets/css/main.css"/>
   <link rel="stylesheet" href="assets/css/addon.css"/>
 </head>
@@ -26,7 +28,7 @@
         <h2>Projects</h2>
         <ul class="links">
           <li><a href="index.html">Index</a></li>
-          <li><a href="logreg.html">Logistic Regression</a></li>
+          <li><a href="logistic-regression.html">Logistic Regression</a></li>
         </ul>
         <a href="#" class="close">Close</a>
       </div>
@@ -53,7 +55,6 @@
 
     <!-- Wrapper -->
     <section id="wrapper">
-
       <!-- One -->
       <section id="one" class="wrapper spotlight style1">
         <div class="inner">
@@ -152,7 +153,48 @@
           </div>
         </div>
       </section>
-
+      <div class="wrapper">
+        <div class="inner">
+          <section>
+            <h3 class="major">About me</h3>
+            <p>
+              <iframe class="image right" width="560" height="315" src="https://www.youtube.com/embed/Xts42tFYRRg" frameborder="0" allowfullscreen></iframe>
+              <h4>London Equations</h4>
+              <p id="london-eqn-1"></p>
+              <p id="london-eqn-2"></p>
+              <h4>Bloch Electron</h4>
+              <p id="bloch"></p>
+            </p>
+            <p>
+              <span class="image left"><img src="images/surf.jpg"/></span>
+              Above is what I studied in college, very cool isn't it? Superconductivity
+              is known as a macroscopic quantum effect, i.e. a normal size object
+              behaving according to the laws of quantum mechanics. But no, it's not possible
+              to fly like superman using magnetism to levitate above ground. Due to the dipole
+              nature of magnetism, magnetic force is relatively short-ranged. I received my
+              Bachelor's degree in Physics from UCSD, specializing in Computational and
+              Condensed Matter Physics. Although ceramic superconductors had brought forth a
+              revolution, the physics behind this new class of high Tc superconductors remain
+              a mystery.
+            </p>
+            <p>
+              <span class="image right"><img src="images/photographer.jpg"/></span>
+              Although Physics has always been a subject of fascination and childhood aspiration
+              to me, I discovered that I actually enjoyed hacking/building more as a career option. What
+              drawn me to Physics is the understanding of our natural world and the empowerment it
+              implies. Understanding empowers us, because it implies that we possess predictive power.
+              Thus, I have a strong inclination toward creating predictive model. I look forward to create
+              intelligent applications using mathematics and statistical model.
+            </p>
+            <p style="margin-top: 4em;">
+              Put the nerdy topics aside, I do have outdoor hobbies. I really enjoyed surfing in
+              La Jolla. UCSD is located right next to the beach. It was a 10 minutes drive from my
+              apartment to the beach. Beside surfing, I am an avid photographer. I was once a
+              wedding photographer and ran a small business of wedding photography in San Diego.
+            </p>
+          </section>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -189,5 +231,13 @@
   <script src="assets/js/jquery.scrollex.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    let london1 = document.getElementById('london-eqn-1');
+    let london2 = document.getElementById('london-eqn-2');
+    let bloch = document.getElementById('bloch');
+    katex.render(`\\frac{\\partial j_{s}}{\\partial t} =\\frac{n_{s}e^{2}}{m}E`, london1);
+    katex.render(`\\nabla\\times j_{s} = -\\frac{n_{s}e^{2}}{m}B`, london2);
+    katex.render(`\\psi(\\vec{r}) = u(r)e^{i k \\cdot \\vec{r}}`, bloch);
+  </script>
 </body>
 </html>
