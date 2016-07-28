@@ -117,64 +117,203 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             </div>
           </section>
 
-          <section id="data-section">
-            <h3 class="major">Data</h3>
+          <section>
+            <h3>Training Set</h3>
             <div id="data-plot"></div>
+            <p>
+              The training set is composed of 180 teams in 90 matches
+            </p>
+          </section>
+
+          <section id="data-section">
+            <h3 class="major">Test set</h3>
+            <p>
+              The test set is composed of 20 teams in 10 matches. The output of
+              the regression model is a number between 0 and 1 that represents
+              the probability of a given team winning the match. For the ease of
+              reading, I've converted the probability to percentage and rounded
+              data to nearest 3 decimal places
+            </p>
+            <p id="params"></p>
+            <p id="prediction"></p>
             <div class="table-wrapper">
               <table class="alt">
                 <thead>
                   <tr>
-                    <th>Match</th>
-                    <th>Team gold earned per sec</th>
-                    <th>Team KDA</th>
-                    <th>Team CS per min</th>
-                    <th>Win/Loss</th>
+                    <th>Match ID</th>
+                    <th>Team gold earned per sec (x1;x)</th>
+                    <th>Team KDA (x2;y)</th>
+                    <th>Team CS per min (x3;z)</th>
+                    <th>Prediction</th>
+                    <th>Actual Win/Loss</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Item One</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                    <td>Example</td>
-                    <td>Example</td>
+                    <td>2054999086</td>
+                    <td>24.471</td>
+                    <td>1.030</td>
+                    <td>15.250</td>
+                    <td>5.75%</td>
+                    <td>Loss</td>
                   </tr>
                   <tr>
-                    <td>Item Two</td>
-                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                    <td>19.99</td>
-                    <td>Example</td>
-                    <td>Example</td>
+                    <td>2054999086</td>
+                    <td>33.724</td>
+                    <td>5.600</td>
+                    <td>20.650</td>
+                    <td>99.94%</td>
+                    <td>Win</td>
                   </tr>
                   <tr>
-                    <td>Item Three</td>
-                    <td> Morbi faucibus arcu accumsan lorem.</td>
-                    <td>29.99</td>
-                    <td>Example</td>
-                    <td>Example</td>
+                    <td>2054999093</td>
+                    <td>25.793</td>
+                    <td>0.844</td>
+                    <td>17.500</td>
+                    <td>1.58%</td>
+                    <td>Loss</td>
                   </tr>
                   <tr>
-                    <td>Item Four</td>
-                    <td>Vitae integer tempus condimentum.</td>
-                    <td>19.99</td>
-                    <td>Example</td>
-                    <td>Example</td>
+                    <td>2054999093</td>
+                    <td>35.301</td>
+                    <td>4.810</td>
+                    <td>16.100</td>
+                    <td>99.91%</td>
+                    <td>Win</td>
                   </tr>
                   <tr>
-                    <td>Item Five</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                    <td>Example</td>
-                    <td>Example</td>
+                    <td>2054999124</td>
+                    <td>25.031</td>
+                    <td>1.167</td>
+                    <td>14.350</td>
+                    <td>11.03%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999124</td>
+                    <td>32.729</td>
+                    <td>3.294</td>
+                    <td>18.200</td>
+                    <td>89.85%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999127</td>
+                    <td>35.063</td>
+                    <td>3.792</td>
+                    <td>23.800</td>
+                    <td>80.3%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999127</td>
+                    <td>27.297</td>
+                    <td>1.941</td>
+                    <td>18.900</td>
+                    <td>15.05%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999129</td>
+                    <td>36.197</td>
+                    <td>4.476</td>
+                    <td>19.500</td>
+                    <td>99.23%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999129</td>
+                    <td>25.987</td>
+                    <td>1.275</td>
+                    <td>14.950</td>
+                    <td>11.73%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999137</td>
+                    <td>35.891</td>
+                    <td>7.800</td>
+                    <td>18.300</td>
+                    <td>100%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999137</td>
+                    <td>23.414</td>
+                    <td>0.564</td>
+                    <td>17.100</td>
+                    <td>0.86%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999150</td>
+                    <td>31.156</td>
+                    <td>3.636</td>
+                    <td>20.350</td>
+                    <td>90.57</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999150</td>
+                    <td>25.986</td>
+                    <td>1.563</td>
+                    <td>17.650</td>
+                    <td>9.31%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999322</td>
+                    <td>28.097</td>
+                    <td>1.318</td>
+                    <td>15.350</td>
+                    <td>11.55%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999322</td>
+                    <td>34.911</td>
+                    <td>3.571</td>
+                    <td>17.100</td>
+                    <td>96.62%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999360</td>
+                    <td>23.909</td>
+                    <td>0.667</td>
+                    <td>19.950</td>
+                    <td>0.39%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999360</td>
+                    <td>31.892</td>
+                    <td>8.700</td>
+                    <td>17.650</td>
+                    <td>100%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999430</td>
+                    <td>32.794</td>
+                    <td>4.150</td>
+                    <td>15.100</td>
+                    <td>99.64%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999430</td>
+                    <td>25.012</td>
+                    <td>1.048</td>
+                    <td>13.950</td>
+                    <td>9.51%</td>
+                    <td>Loss</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </section>
 
-          <section>
-            <h3>Graph</h3>
-          </section>
         </div>
       </div>
 

@@ -87,19 +87,23 @@ katex.render(`\\theta_{j} := \\theta_{j} - \\alpha \\left[
 \\frac{1}{m}\\sum_{i = 1}^{m}(h{\\theta}(x^{(i)}) - y^{(i)})x_{j}^{(i)}
 + \\frac{\\lambda}{m}\\theta_{j}\\right]`, algo2);
 
+let params = document.getElementById('params');
+katex.render(`\\theta^{T}x = \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}
+  =9.294\\times 10^{-3} + 9.263\\times 10^{-3}x_{1} + 2.658x_{2} - 3.784\\times 10^{-1}x_{3}`,
+  params);
+
+let prediction = document.getElementById('prediction');
+katex.render(`P(Win) = h_{\\theta}(\\vec{x}) = \\frac{1}{1 + e^{-\\theta^{T}x}}`, prediction);
+
 let sectionWidth = $("#data-section").width();
 let layout = {
   title: "League of Legend Team Win/Loss",
   showlegend: true,
   autosize: true,
   width: sectionWidth,
-  scene: {
-  xaxis: {title: 'x: Gold earned per sec'},
-  yaxis: {title: 'y: Team KDA'},
-  zaxis: {title: 'z: Creeps killed per min'}}
 };
 
-let set1 = {
+let winners = {
   name: 'Winning Team',
   mode: 'markers',
   type: 'scatter3d',
@@ -118,7 +122,7 @@ let set1 = {
   z: matchData.win.x3,
 };
 
-let set2 = {
+let losers = {
   name: 'Losing Team',
   mode: 'markers',
   type: 'scatter3d',
@@ -138,4 +142,4 @@ let set2 = {
 };
 
 /* global Plotly */
-Plotly.newPlot('data-plot', [set1, set2], layout);
+Plotly.newPlot('data-plot', [winners, losers], layout);
