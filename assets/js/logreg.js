@@ -49,6 +49,7 @@ const matchData = {
 };
 
 /* global katex */
+// KaTex API
 let sigmoid = document.getElementById('sigmoid');
 katex.render("g(z) = \\frac{1}{1 + e^{-z}}", sigmoid);
 
@@ -78,14 +79,15 @@ let gradientDescent = document.getElementById('gradient-descent');
 katex.render(`\\vec{\\theta} := \\vec{\\theta} - \\alpha\\nabla J(\\theta)`, gradientDescent);
 
 let algo1 = document.getElementById('algorithm-1');
-katex.render(`\\theta_{0} := \\theta_{0} - \\alpha \\left[
-\\frac{1}{m}\\sum_{i = 1}^{m}(h_{\\theta}(x^{(i)}) - y^{(i)})x_{0}^{(i)} \\right]`,
+katex.render(`\\theta_{0} := \\theta_{0} - \\alpha \\frac{\\partial J}{\\partial \\theta_{0}}
+= \\theta_{0} - \\alpha \\left[\\frac{1}{m}\\sum_{i = 1}^{m}(h_{\\theta}(x^{(i)})
+- y^{(i)})x_{0}^{(i)} \\right]`,
 algo1);
 
 let algo2 = document.getElementById('algorithm-2');
-katex.render(`\\theta_{j} := \\theta_{j} - \\alpha \\left[
-\\frac{1}{m}\\sum_{i = 1}^{m}(h{\\theta}(x^{(i)}) - y^{(i)})x_{j}^{(i)}
-+ \\frac{\\lambda}{m}\\theta_{j}\\right]`, algo2);
+katex.render(`\\theta_{j} := \\theta_{j} - \\alpha \\frac{\\partial J}{\\partial \\theta_{j}}
+= \\theta_{j} - \\alpha \\left[\\frac{1}{m}\\sum_{i = 1}^{m}(h{\\theta}(x^{(i)})
+- y^{(i)})x_{j}^{(i)} + \\frac{\\lambda}{m}\\theta_{j}\\right]`, algo2);
 
 let params = document.getElementById('params');
 katex.render(`\\theta^{T}x = \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}
@@ -95,6 +97,7 @@ katex.render(`\\theta^{T}x = \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} +
 let prediction = document.getElementById('prediction');
 katex.render(`P(Win) = h_{\\theta}(\\vec{x}) = \\frac{1}{1 + e^{-\\theta^{T}x}}`, prediction);
 
+// Graph API
 let sectionWidth = $("#data-section").width();
 let layout = {
   title: "League of Legend Team Win/Loss",
