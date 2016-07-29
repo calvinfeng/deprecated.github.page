@@ -173,8 +173,14 @@
         <div class="inner">
           <section>
             <h3 class="major">About me</h3>
-            <p>
-              <iframe class="image right" width="560" height="315" src="https://www.youtube.com/embed/Xts42tFYRRg" frameborder="0" allowfullscreen></iframe>
+            <p id="physics">
+              <iframe class="image right"
+                height="240"
+                width="480"
+                src="https://www.youtube.com/embed/Xts42tFYRRg"
+                frameborder="0"
+                allowfullscreen>
+              </iframe>
               <h4>London Equations</h4>
               <p id="london-eqn-1"></p>
               <p id="london-eqn-2"></p>
@@ -255,6 +261,8 @@
     katex.render(`\\frac{\\partial j_{s}}{\\partial t} =\\frac{n_{s}e^{2}}{m}E`, london1);
     katex.render(`\\nabla\\times j_{s} = -\\frac{n_{s}e^{2}}{m}B`, london2);
     katex.render(`\\psi(\\vec{r}) = u(r)e^{i k \\cdot \\vec{r}}`, bloch);
+    $("<iframe></iframe>").css("height", $("#physics").height());
+    debugger
   </script>
 </body>
 </html>
