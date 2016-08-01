@@ -14,3 +14,26 @@
 #index-ul li{
   border: none;
 }
+
+#physics-content-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2em;
+  border-bottom: solid 2px rgba(255, 255, 255, 0.125);
+}
+
+#video-container {
+  width: 50%;
+}
+
+#video-container iframe {
+  width: 100%;
+}
+
+#eqn-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2em;
+}

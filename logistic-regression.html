@@ -46,7 +46,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
   <header>
     <div class="inner">
       <h2>Logistic Regression</h2>
-      <p>A classification algorithm in Machine Learning</p>
+      <p>A linear classifier optimized by gradient descent</p>
     </div>
   </header>
 
@@ -396,6 +396,34 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section>
+        <h3 class="major">Discussion</h3>
+        <p>
+          It's very trivial to human that whichever team has the most kill to death ratio
+          should win the game. After all this is an arena game, players fight each other to "death"
+          and score kills to earn gold. The team that has the most kills will tend to have more gold.
+          However, this is not trivial to a computer.
+        </p>
+        <p>
+          Computer has no knowledge of the gameplay and the rules that
+          govern win/loss. Computer can only observe and devise correlation between
+          input and outcome of the game. In this exercise, the computer has successfully "learned"
+          a pattern from training set and apply it to test set to predict that KDA has the most
+          influence on the probability of a given team winning the game. One surprising fact is that
+          creep score has very little correlation with winning the game. Killing more creeps in the
+          first 20 minutes does not help with winning the game. Team work plays a larger role.
+        </p>
+        <p>
+          The algorithm is a linear classifier, because the decision boundary is a straight
+          line in the 3-dimensional input vector space. That is, a straight line(plane) can be drawn
+          to distinguish the winning data point from the losing data point.
+        </p>
+        <p>
+          This regression model can be applied to many other binary classification
+          problems. League of Legend was chosen due to convenience.
+        </p>
       </section>
 
     </div>
