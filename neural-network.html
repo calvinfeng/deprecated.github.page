@@ -35,7 +35,7 @@
         <div class="inner">
 
           <section>
-            <h3 class="major">Network</h3>
+            <h3 class="major">The Network</h3>
             <p>
               The write-up is coming soon...
             </p>
@@ -46,30 +46,14 @@
             </p> -->
             <h4>Class Definition</h4>
             <p id="class-definition"></p>
-            <!-- <blockquote>
-              Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis
-              eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.
-              Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus.
-              Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing
-              eu felis.
-            </blockquote> -->
-            <!-- <h4>Preformatted</h4>
-            <pre>
-              <code>i = 0;
-                while (!deck.isInOrder()) {
-                  print 'Iteration ' + i;
-                  deck.shuffle();
-                  i++;
-                }
-                print 'It took ' + i + ' iterations to sort the deck.';
-              </code>
-            </pre> -->
           </section>
 
           <section>
             <h3 class="major">Parameters</h3>
             <h4>Theta Matrices</h4>
             <p id="theta"></p>
+            <h4>Diagram</h4>
+            <img height="400" src="./images/neural.png"/>
             <h4>Activation Vectors</h4>
             <p id="a-vector"></p>
           </section>
@@ -87,10 +71,46 @@
           </section>
 
           <section>
+            <h3 class="major">Back Propagation</h3>
+            <h4>From Layer 3 (Output) back t Layer 2</h4>
+            <p id="back-prop-1"></p>
+            <p id="back-prop-2"></p>
+            <p id="back-prop-3"></p>
+            <h4>Layer 1 does not have delta</h4>
+            <p>
+              Layer 1 is not artificially generated; they are real inputs.
+              Thus, there shouldn't be any error term associated with the input layer.
+            </p>
           </section>
 
           <section>
-            <h3 class="major">Back Propagation</h3>
+            <h3 class="major">Partial Derivatives</h3>
+            <h4>Accumulate Deltas</h4>
+            <p id="partial-1"></p>
+            <p id="partial-2"></p>
+            <h4>Partial Derivatives</h4>
+            <p><code>if (j == 0)</code></p>
+            <p id="partial-3"></p>
+            <p><code>if (j != 0)</code></p>
+            <p id="partial-4"></p>
+          </section>
+
+          <section>
+            <h3 class="major">Gradient Descent</h3>
+            <h4>Update the Theta matrices</h4>
+            <p>
+              Since arrays are zero-indexed, we use 0 to denote layer 1
+            </p>
+            <p>
+              <code>l = 0..1</code>
+              <code>i = 0..num_of_rows</code>
+              <code>j = 0..num_of_cols</code>
+            </p>
+            <p id="gradient-1"></p>
+            <p>
+              Iterate until convergence, which means until the sum of all
+              terms in partial derivative matrices approaches zero.
+            </p>
           </section>
 
           <!-- <section>
@@ -101,32 +121,32 @@
           <p><span class="image right"><img src="images/pic02.jpg" alt="" /></span>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius. Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat. Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui.</p>
         </section> -->
 
+        </div>
       </div>
-    </div>
 
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <section id="footer">
-    <div class="inner">
-      <ul class="copyright">
-        <li>&copy; Untitled Inc. All rights reserved.</li>
-        <li>Written by
-          <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
-        </li>
-      </ul>
-    </div>
-  </section>
+    <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
+        <ul class="copyright">
+          <li>&copy; Calvin Feng. All rights reserved.</li>
+          <li>Written by
+            <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-</div>
-<!-- Scripts -->
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="assets/js/neural-network.js"></script>
+  </div>
+  <!-- Scripts -->
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="assets/js/neural-network.js"></script>
 </body>
 </html>
