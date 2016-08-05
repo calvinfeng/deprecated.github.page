@@ -173,3 +173,5 @@ let gradient1 = document.getElementById("gradient-1");
 katex.render(`\\Theta_{ij}^{(l)} = \\Theta_{ij}^{(l)} -
   \\alpha\\frac{\\partial}{\\partial\\Theta_{ij}^{(l)}}J`, gradient1
 );
+
+let costFunction = document.getElementById("cost-function");

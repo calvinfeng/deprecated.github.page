@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="assets/css/neural-network.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
   <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
   <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -33,48 +34,201 @@
       <!-- Content -->
       <div class="wrapper">
         <div class="inner">
+          <section>
+            <h3 class="major">The Problem</h3>
+            <p>
+              The purpose of this machine learning algorithm is to classify flowers into three different
+              iris species based on the following inputs:
+            </p>
+            <ul>
+              <li>Sepal Length</li>
+              <li>Sepal Width</li>
+              <li>Petal Length</li>
+              <li>Petal Width</li>
+            </ul>
+            <p>
+              What's interesting about this project isn't the flower, rather it's
+              the fact that classifying the species would require a non-linear boundary
+              decision. Let's take a look at the following plot:
+            </p>
+            <div id="img-container">
+              <img height="400" src="./images/iris.png" />
+            </div>
+            <p>
+              Iris setosa is linearly separable from the other two species, but the decision
+              boundary between versicolor and virginica is non-linear. It means that I simply
+              cannot draw a straight line to separate versicolor from virginica. In this case,
+              I need a neural network to perform non-linear classification.
+            </p>
+            <p>
+              For more information about the data set, please visit
+              <a href="https://archive.ics.uci.edu/ml/datasets/Iris">
+                UC Irvine Machine Learning Repository
+              </a>
+              <div><b>Note:</b> please use Chrome for rendering LaTex</div>
+            </p>
+          </section>
 
           <section>
             <h3 class="major">The Network</h3>
             <p>
-              This page is still under construction. The mathematical formulations are
-              lacking descriptions.
-              <div>Note: if you don't see any mathematical equations, please use chrome</div>
+              First, we need a representation of classes (<i>setosa</i>, <i>versicolor</i>, <i>virginica</i>)
+            </p>
+            <h4>Class Definition</h4>
+            <p id="class-definition"></p>
+            These are the three vectors we will use to represent flower species. Vectors are
+            represented by arrays in programming languages
+            <ul>
+              <li><code>[1, 0, 0] => iris-setosa</code></li>
+              <li><code>[0, 1, 0] => iris-versicolor</code></li>
+              <li><code>[0, 0, 1] => iris-virginica</code></li>
+            </ul>
+            <h4>Neural Node: Neuron</h4>
+            <p>
+              A neural network is formed by connecting bunch of nodes together. Each
+              node is basically a numerical value in a vector or a matrix. We can represent
+              node as an object if object-oriented design is preferred. But for this project,
+              I went with functional programming paradigm for efficiency. Similarly, the strength
+              of connection is also represented by numerical values. I will explain what it means
+              to <i>connect</i>.
+            </p>
+            <h4>Diagram</h4>
+            <img height="400" src="./images/neural.png"/>
+            <p>
+              I am using three layers of neurons to perform machine learning.
+              <ul>
+                <li>Layer 1: the input layer takes in four values as input
+                  <ul>
+                    <li><code>x1: sepal-length</code></li>
+                    <li><code>x2: sepal-width</code></li>
+                    <li><code>x3: petal-length</code></li>
+                    <li><code>x4: petal-width</code></li>
+                  </ul>
+                </li>
+                <li>Layer 2 is known as the hidden layer, the values from input layer will
+                  be mapped to the hidden layer through a process called <b>forward propagation</b>.
+                </li>
+                <li>Layer 3 is the output layer. It has three nodes and numerical values of these
+                  nodes represent how probable is a set of input belongs to a specific class. In this
+                  case, <code>a1 => Prob(setosa)</code>, <code>a2 => Prob(versicolor)</code>, and
+                  <code>a3 => Prob(virginica)</code>. <b>Forward propagation</b> is responsible for
+                  mapping hidden layer to output layer.
+                </li>
+              </ul>
+
             </p>
             <!-- <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i>
               and this is <em>emphasized</em>. This is <sup>superscript</sup> text and this is
               <sub>subscript</sub> text. This is <u>underlined</u> and this is code:
               <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.
             </p> -->
-            <h4>Class Definition</h4>
-            <p id="class-definition"></p>
-          </section>
 
+          </section>
           <section>
             <h3 class="major">Parameters</h3>
             <h4>Theta Matrices</h4>
             <p id="theta"></p>
-            <h4>Diagram</h4>
-            <img height="400" src="./images/neural.png"/>
+            <p>
+              The theta(s)/parameters are also known as the weights of the conenction
+              between neurons. Theta<sup>(1)</sup>(s) are the weights that map layer 1 to layer 2.
+              Theta<sup>(2)</sup>(s) are the weights that map layer 2 to the final layer.
+            </p>
+            <p>
+              Theta<sup>(1)</sup> is a 4 by 5 matrix because we are mapping from 5 nodes
+              to 4 nodes. Linear algebra: (4x5) x (5x1) = (4x1).
+              Similarly, Theta<sup>(2)</sup> is 3 by 5 matrix because the final
+              output has 3 nodes.
+            </p>
             <h4>Activation Vectors</h4>
             <p id="a-vector"></p>
+            <p>
+              The activation vectors are really just the arrays that contain the
+              nodes. a<sup>(1)</sup> contains all the input values with 1 in front as the
+              bias unit. The bias unit is similar to a constant in linear regression. It is
+              there to provide offset correction. a<sup>(2)</sup> contains all the nodes
+              in the hidden layer while a<sup>(3)</sup> are the outputs or predictions.
+              <strong>
+                Be aware that a<sub>1</sub> in layer 2 is not the same as the a<sub>1</sub> in layer 3.
+              </strong>
+            </p>
           </section>
 
           <section>
             <h3 class="major">Forward Propagation</h3>
+            <p>
+              Imagine that the strength of connection between each node is represented
+              by the elements in the Theta<sup>(1)</sup> matrix. Then if we take a look at
+              the diagram, we can see that there are 20 outgoing edges from layer 1 to layer 2.
+              These 20 outgoing edges are in fact the thetas.
+            </p>
             <h4>From Layer 1 (Input) to Layer 2</h4>
+            <p>
+              Begin with defining the sigmoid function once again, this is important
+              for any classification task.
+            </p>
             <p id="sigmoid"></p>
+            <p>
+              We forward propagate by matrix multiplication. We say that each node
+              in layer 2 is computed by <code>g(z)</code> and that z is a linear combination of all the
+              nodes in previous layer.
+            </p>
             <p id="forward-prop-1"></p>
             <p id="forward-prop-2"></p>
             <h4>From Layer 2 to Layer 3 (Output)</h4>
+            <p>
+              We continue to propagate forward until we hit the last layer
+            </p>
             <p id="forward-prop-3"></p>
             <h4>Final Layer: Prediction</h4>
+            <p>
+              Once we reach the final layer and compute a's, we have our output a.k.a. prediction.
+              In other words, we begin with some input values, we propagate these values forward
+              through the neural network. The network influences the values by the strength of connections
+              between each node.
+            </p>
             <p id="forward-prop-4"></p>
           </section>
 
           <section>
+            <h3 class="major">Gradient Descent</h3>
+            <p>
+              So far we have only addressed how to produce output from a set of input. We
+              haven't talked about how are the parameters even defined in the first place.
+              Just as any machine learning algorithm, finding the correct values for the parameters
+              is the ultimate goal of learning. Just like human, we began with some randomly initialized
+              connections in our brain. As we grow older and wiser, we use our experience to re-wire
+              our own neural connection to achieve the goal of "learning."
+            </p>
+            <h4>Update the Theta matrices</h4>
+            <p>
+              We are trying to find the parameters that will lead to the best
+              fit of the data. The machine will try to minimize its prediction error with
+              the training set. Once again, we need to use gradient descent to "wire" the
+              machine's neural connection. That's how learning is done!
+            </p>
+            <p>
+              Let's define the cost function first. Cost function describes how "wrong"
+              our machine is. We will minimize the cost function through gradient descent.
+            </p>
+            <p id="cost-function"></p>
+            <p>
+              Since arrays are zero-indexed, we use 0 to denote layer 1
+            </p>
+            <p>
+              <code>l = 0..1</code>
+              <code>i = 0..num_of_rows</code>
+              <code>j = 0..num_of_cols</code>
+            </p>
+            <p id="gradient-1"></p>
+            <p>
+              Iterate until convergence, which means until the sum of all
+              terms in partial derivative matrices approaches zero.
+            </p>
+          </section>
+
+          <section>
             <h3 class="major">Back Propagation</h3>
-            <h4>From Layer 3 (Output) back t Layer 2</h4>
+            <h4>From Layer 3 (Output) back to Layer 2</h4>
             <p id="back-prop-1"></p>
             <p id="back-prop-2"></p>
             <p id="back-prop-3"></p>
@@ -97,23 +251,6 @@
             <p id="partial-4"></p>
           </section>
 
-          <section>
-            <h3 class="major">Gradient Descent</h3>
-            <h4>Update the Theta matrices</h4>
-            <p>
-              Since arrays are zero-indexed, we use 0 to denote layer 1
-            </p>
-            <p>
-              <code>l = 0..1</code>
-              <code>i = 0..num_of_rows</code>
-              <code>j = 0..num_of_cols</code>
-            </p>
-            <p id="gradient-1"></p>
-            <p>
-              Iterate until convergence, which means until the sum of all
-              terms in partial derivative matrices approaches zero.
-            </p>
-          </section>
 
           <!-- <section>
           <h3 class="major">Image</h3>
