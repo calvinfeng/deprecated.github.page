@@ -20,6 +20,9 @@
     <!-- Header -->
     <header id="header">
       <h1><a href="index.html">Back to Index</a></h1>
+      <nav>
+        <a href="https://github.com/calvinfeng/NeuralNetwork">source code</a>
+      </nav>
     </header>
 
     <!-- Wrapper -->
@@ -28,6 +31,8 @@
         <div class="inner">
           <h2>Neural Network</h2>
           <p>A non-linear classifier</p>
+          <div>
+          </div>
         </div>
       </header>
 
@@ -117,383 +122,431 @@
 
             </p>
             <!-- <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i>
-              and this is <em>emphasized</em>. This is <sup>superscript</sup> text and this is
-              <sub>subscript</sub> text. This is <u>underlined</u> and this is code:
-              <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.
-            </p> -->
+            and this is <em>emphasized</em>. This is <sup>superscript</sup> text and this is
+            <sub>subscript</sub> text. This is <u>underlined</u> and this is code:
+            <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.
+          </p> -->
 
-          </section>
-          <section>
-            <h3 class="major">Parameters</h3>
-            <h4>Theta Matrices</h4>
-            <p id="theta"></p>
-            <p>
-              The theta(s)/parameters are also known as the weights of the conenction
-              between neurons. Theta<sup>(1)</sup>(s) are the weights that map layer 1 to layer 2.
-              Theta<sup>(2)</sup>(s) are the weights that map layer 2 to the final layer.
-            </p>
-            <p>
-              Theta<sup>(1)</sup> is a 4 by 5 matrix because we are mapping from 5 nodes
-              to 4 nodes. Linear algebra: (4x5) x (5x1) = (4x1).
-              Similarly, Theta<sup>(2)</sup> is 3 by 5 matrix because the final
-              output has 3 nodes.
-            </p>
-            <h4>Activation Vectors</h4>
-            <p id="a-vector"></p>
-            <p>
-              The activation vectors are really just the arrays that contain the
-              nodes. a<sup>(1)</sup> contains all the input values with 1 in front as the
-              bias unit. The bias unit is similar to a constant in linear regression. It is
-              there to provide offset correction. a<sup>(2)</sup> contains all the nodes
-              in the hidden layer while a<sup>(3)</sup> are the outputs or predictions.
-              <strong>
-                Be aware that a<sub>1</sub> in layer 2 is not the same as the a<sub>1</sub> in layer 3.
-              </strong>
-            </p>
-          </section>
+        </section>
+        <section>
+          <h3 class="major">Parameters</h3>
+          <h4>Theta Matrices</h4>
+          <p id="theta"></p>
+          <p>
+            The theta(s)/parameters are also known as the weights of the conenction
+            between neurons. Theta<sup>(1)</sup>(s) are the weights that map layer 1 to layer 2.
+            Theta<sup>(2)</sup>(s) are the weights that map layer 2 to the final layer.
+          </p>
+          <p>
+            Theta<sup>(1)</sup> is a 4 by 5 matrix because we are mapping from 5 nodes
+            to 4 nodes. Linear algebra: (4x5) x (5x1) = (4x1).
+            Similarly, Theta<sup>(2)</sup> is 3 by 5 matrix because the final
+            output has 3 nodes.
+          </p>
+          <h4>Activation Vectors</h4>
+          <p id="a-vector"></p>
+          <p>
+            The activation vectors are really just the arrays that contain the
+            nodes. a<sup>(1)</sup> contains all the input values with 1 in front as the
+            bias unit. The bias unit is similar to a constant in linear regression. It is
+            there to provide offset correction. a<sup>(2)</sup> contains all the nodes
+            in the hidden layer while a<sup>(3)</sup> are the outputs or predictions.
+            <strong>
+              Be aware that a<sub>1</sub> in layer 2 is not the same as the a<sub>1</sub> in layer 3.
+            </strong>
+          </p>
+        </section>
 
-          <section>
-            <h3 class="major">Forward Propagation</h3>
-            <p>
-              Imagine that the strength of connection between each node is represented
-              by the elements in the Theta<sup>(1)</sup> matrix. Then if we take a look at
-              the diagram, we can see that there are 20 outgoing edges from layer 1 to layer 2.
-              These 20 outgoing edges are in fact the thetas.
-            </p>
-            <h4>From Layer 1 (Input) to Layer 2</h4>
-            <p>
-              Begin with defining the sigmoid function, this is important
-              for any classification task.
-            </p>
-            <p id="sigmoid"></p>
-            <p>
-              We forward propagate by matrix multiplication. We say that each node
-              in layer 2 is computed by <code>g(z)</code> and that <b>z</b><sup>(layer)</sup> is
-              a linear combination of all the nodes in previous layer.
-            </p>
-            <p id="forward-prop-1"></p>
-            <p id="forward-prop-2"></p>
-            <h4>From Layer 2 to Layer 3 (Output)</h4>
-            <p>
-              We continue to propagate forward until we hit the last layer
-            </p>
-            <p id="forward-prop-3"></p>
-            <h4>Final Layer: Prediction</h4>
-            <p>
-              Once we reach the final layer and compute a's, we have our output a.k.a. prediction.
-              In other words, we begin with some input values, we propagate these values forward
-              through the neural network. The network influences the values by the strength of connections
-              between each node in different layers.
-            </p>
-            <p id="forward-prop-4"></p>
-          </section>
+        <section>
+          <h3 class="major">Forward Propagation</h3>
+          <p>
+            Imagine that the strength of connection between each node is represented
+            by the elements in the Theta<sup>(1)</sup> matrix. Then if we take a look at
+            the diagram, we can see that there are 20 outgoing edges from layer 1 to layer 2.
+            These 20 outgoing edges are in fact the thetas.
+          </p>
+          <h4>From Layer 1 (Input) to Layer 2</h4>
+          <p>
+            Begin with defining the sigmoid function, this is important
+            for any classification task.
+          </p>
+          <p id="sigmoid"></p>
+          <p>
+            We forward propagate by matrix multiplication. We say that each node
+            in layer 2 is computed by <code>g(z)</code> and that <b>z</b><sup>(layer)</sup> is
+            a linear combination of all the nodes in previous layer.
+          </p>
+          <p id="forward-prop-1"></p>
+          <p id="forward-prop-2"></p>
+          <h4>From Layer 2 to Layer 3 (Output)</h4>
+          <p>
+            We continue to propagate forward until we hit the last layer
+          </p>
+          <p id="forward-prop-3"></p>
+          <h4>Final Layer: Prediction</h4>
+          <p>
+            Once we reach the final layer and compute a's, we have our output a.k.a. prediction.
+            In other words, we begin with some input values, we propagate these values forward
+            through the neural network. The network influences the values by the strength of connections
+            between each node in different layers.
+          </p>
+          <p id="forward-prop-4"></p>
+          <pre>
+            <code>
+              function forwardProp(inputVector, weights) {
+                let z, activations = [inputVector];
+                for (let l = 0; l < weights.length; l++) {
+                  z = Matrix.multiply(weights[l], [1].concat(activations[l]));
+                  activations.push(sigmoid(z));
+                }
+                return activations;
+              }
+            </code>
+          </pre>
+        </section>
 
-          <section>
-            <h3 class="major">Gradient Descent</h3>
-            <p>
-              So far we have only addressed how to produce output from a set of input. We
-              haven't talked about how are the parameters even defined in the first place.
-              Just as any machine learning algorithm, finding the correct values for the parameters
-              is the ultimate goal of learning. Just like human, we began with some randomly initialized
-              connections in our brain. As we grow older and wiser, we use our experience to re-wire
-              our own neural connection to achieve the goal of "learning."
-            </p>
-            <h4>Update the Theta matrices</h4>
-            <p>
-              We are trying to find the parameters that will lead to the best
-              fit of the data. The machine will try to minimize its prediction error with
-              the training set. Once again, we need to use gradient descent to "wire" the
-              machine's neural connection. That's how learning is done!
-            </p>
-            <p>
-              Let's define the cost function first. Cost function describes how "wrong"
-              our machine is. We will minimize the cost function through gradient descent.
-            </p>
-            <p id="cost-function"></p>
-            <p>
-              The capital <b>L</b> is the total number of layers. The capital <b>K</b> is
-              the number of classes, we have 3 in this case. The <b>h</b> function is the
-              hypothesis, which is obtained through forward propagation. Arrays are
-              zero-indexed, when we say layer 1, class 1, whatever first element of something,
-              we use 0 when we code.
-            </p>
-            <pre>
-              <code>
-                The return value of h is an array
-                h = [num1, num2, num3]
-                h[k] => h[0], h[1], h[2]
-                y[k] => y[0], y[1], y[2]
-              </code>
-            </pre>
-            <p>
-              As described above, We use 0 to denote layer 1
-            </p>
-            <p>
-              <code>l = 0..1</code>
-              <code>i = 0..num_of_rows</code>
-              <code>j = 0..num_of_cols</code>
-            </p>
-            <p id="gradient-1"></p>
-            <p>
-              We will iterate through all thetas until convergence,
-              which means until the sum of all terms in partial derivative matrices
-              approaches zero. Then we will have our answer.
-            </p>
-          </section>
+        <section>
+          <h3 class="major">Gradient Descent</h3>
+          <p>
+            So far we have only addressed how to produce output from a set of input. We
+            haven't talked about how are the parameters even defined in the first place.
+            Just as any machine learning algorithm, finding the correct values for the parameters
+            is the ultimate goal of learning. Just like human, we began with some randomly initialized
+            connections in our brain. As we grow older and wiser, we use our experience to re-wire
+            our own neural connection to achieve the goal of "learning."
+          </p>
+          <h4>Update the Theta matrices</h4>
+          <p>
+            We are trying to find the parameters that will lead to the best
+            fit of the data. The machine will try to minimize its prediction error with
+            the training set. Once again, we need to use gradient descent to "wire" the
+            machine's neural connection. That's how learning is done!
+          </p>
+          <p>
+            Let's define the cost function first. Cost function describes how "wrong"
+            our machine is. We will minimize the cost function through gradient descent.
+          </p>
+          <p id="cost-function"></p>
+          <p>
+            The capital <b>L</b> is the total number of layers. The capital <b>K</b> is
+            the number of classes, we have 3 in this case. The <b>h</b> function is the
+            hypothesis, which is obtained through forward propagation. Arrays are
+            zero-indexed, when we say layer 1, class 1, whatever first element of something,
+            we use 0 when we code.
+          </p>
+          <pre>
+            <code>
+              //The return value of h is an array
+              //h[k] => h[0], h[1], h[2] which is the activation vector of last layer
+              //y[k] => y[0], y[1], y[2] from trainingSet
+              function costFunction(trainingSetX, trainingSetY, weights, lambda) {
+                let m = trainingSetX.length;
+                let costSum = 0, regularizedSum = 0;
+                for (let l = 0; l < weights.length; l++) {
+                  for (let i = 0; i < weights[l].length; i++) {
+                    let row = weights[l][i];
+                    for (let j = 0; j < row.length; j++) {
+                      regularizedSum += row[j]*row[j];
+                    }
+                  }
+                }
+                regularizedSum *= lambda/(2*m);
+                for (let i = 0; i < m; i++) {
+                  let activations = forwardProp(trainingSetX[i], weights);
+                  let y = trainingSetY[i], h = activations[activations.length - 1];
+                  for (let k = 0; k < y.length; k++) {
+                    costSum += y[k]*Math.log(h[k]) + ((1 - y[k])*Math.log(1 - h[k]));
+                  }
+                }
+                return regularizedSum - costSum/m;
+              }
+            </code>
+          </pre>
+          <p>
+            As described above, We use 0 to denote layer 1
+          </p>
+          <p>
+            <code>l = 0..1</code>
+            <code>i = 0..num_of_rows</code>
+            <code>j = 0..num_of_cols</code>
+          </p>
+          <p id="gradient-1"></p>
+          <p>
+            We will iterate through all thetas until convergence,
+            which means until the sum of all terms in partial derivative matrices
+            approaches zero. Then we will have our answer.
+          </p>
+        </section>
 
-          <section>
-            <h3 class="major">Back Propagation</h3>
-            <p>
-              One might ask, what is the partial derivative of the cost function? How
-              do we even find it numerically? Well, think about the limit defintion of
-              derivative. We can approximate the partial derivative.
-            </p>
-            <p id="partial-approx"></p>
-            <p>
-              How many thetas do we have? We have 35. That means for every iteration we need
-              to compute the cost function 70 times. That is an expensive calculation.
-              This is not going to scale. We need a better approach, <b>back-propagation</b>
-            </p>
-            <h4>From Layer 3 (Output) back to Layer 2</h4>
-            <p>
-              We are going to propagate the error from output layer back to input layer!
-              The errors are represented by the delta vectors. The following is how
-              back-propagation is done. Disclaimer: I seriously don't know how the mathematics
-              behind this algorithm was derived but it works like a magic black box.
-            </p>
-            <p id="back-prop-1"></p>
-            <p id="back-prop-2"></p>
-            <p id="back-prop-3"></p>
-            <h4>Layer 1 does not have delta</h4>
-            <p>
-              Layer 1 is not artificially generated; they are real inputs.
-              Thus, there shouldn't be any error term associated with the input layer.
-            </p>
-          </section>
+        <section>
+          <h3 class="major">Back Propagation</h3>
+          <p>
+            One might ask, what is the partial derivative of the cost function? How
+            do we even find it numerically? Well, think about the limit defintion of
+            derivative. We can approximate the partial derivative.
+          </p>
+          <p id="partial-approx"></p>
+          <p>
+            How many thetas do we have? We have 35. That means for every iteration we need
+            to compute the cost function 70 times. That is an expensive calculation.
+            This is not going to scale. We need a better approach, <b>back-propagation</b>
+          </p>
+          <h4>From Layer 3 (Output) back to Layer 2</h4>
+          <p>
+            We are going to propagate the error from output layer back to input layer!
+            The errors are represented by the delta vectors. The following is how
+            back-propagation is done. Disclaimer: I seriously don't know how the mathematics
+            behind this algorithm was derived but it works like a magic black box.
+          </p>
+          <p id="back-prop-1"></p>
+          <p id="back-prop-2"></p>
+          <p id="back-prop-3"></p>
+          <h4>Layer 1 does not have delta</h4>
+          <p>
+            Layer 1 is not artificially generated; they are real inputs.
+            Thus, there shouldn't be any error term associated with the input layer.
+          </p>
+          <pre>
+            <code>
+              function backProp(aVectors, yVec, weights) {
+                let L = aVectors.length - 1; // aVectors : activiation vectors
+                let deltaVectors = [Vector.substract(aVectors[L], yVec)];
+                // Construct delta vectors layer by layer, start from last
+                for (let l = L - 1; l >= 0; l--) {
+                  if (l === 0) {
+                    // Although we don't need deltas[l = 0], I am putting it there as a place holder
+                    deltaVectors.unshift(Vector.zeros(aVectors[l].length));
+                  } else {
+                    let wT = Matrix.transpose(weights[l]);
+                    let a = [1].concat(aVectors[l]);
+                    let gPrime = Vector.elementProduct(a, Vector.substract(Vector.ones(a.length), a));
+                    let delta = Vector.elementProduct(Matrix.multiply(wT, deltaVectors[0]), gPrime);
+                    deltaVectors.unshift(delta.slice(1)); //discard delta for bias unit
+                  }
+                }
+                return deltaVectors;
+              }
+            </code>
+          </pre>
+        </section>
 
-          <section>
-            <h3 class="major">Partial Derivatives</h3>
-            <p>
-              So what do we do with the deltas? By now, we have delta associated
-              with each node except the nodes in the input layers. We are now going to
-              use the deltas to calculate partial derivatives with respect to each
-              theta in our weight matrices.
-            </p>
-            <h4>Accumulate Deltas</h4>
-            <p>
-              Initialize big <b>Theta(s)</b> as the same dimension matrices as our weights.
-            </p>
-            <p id="partial-1"></p>
-            <p>
-              We go through each element and add the following term to it.
-            </p>
-            <p id="partial-2"></p>
-            <p>
-              Remember that we have to do this for every single data point from
-              our training set. If we have 150 points, we will need to back propagate
-              150 times and keep track of delta vectors for each one of them. Then we sum
-              them up and store them in big <b>Delta</b>.
-            </p>
-            <h4>Partial Derivatives</h4>
-            <p>
-              After all those computations, now we have our partial derivatives! Don't forget
-              to add lambda factor to prevent overfitting. Lambda is an arbitrary value
-              you pick, typically around 0.01
-            </p>
-            <p><code>if (j == 0)</code></p>
-            <p id="partial-3"></p>
-            <p><code>if (j != 0)</code></p>
-            <p id="partial-4"></p>
-          </section>
+        <section>
+          <h3 class="major">Partial Derivatives</h3>
+          <p>
+            So what do we do with the deltas? By now, we have delta associated
+            with each node except the nodes in the input layers. We are now going to
+            use the deltas to calculate partial derivatives with respect to each
+            theta in our weight matrices.
+          </p>
+          <h4>Accumulate Deltas</h4>
+          <p>
+            Initialize big <b>Theta(s)</b> as the same dimension matrices as our weights.
+          </p>
+          <p id="partial-1"></p>
+          <p>
+            We go through each element and add the following term to it.
+          </p>
+          <p id="partial-2"></p>
+          <p>
+            Remember that we have to do this for every single data point from
+            our training set. If we have 150 points, we will need to back propagate
+            150 times and keep track of delta vectors for each one of them. Then we sum
+            them up and store them in big <b>Delta</b>.
+          </p>
+          <h4>Partial Derivatives</h4>
+          <p>
+            After all those computations, now we have our partial derivatives! Don't forget
+            to add lambda factor to prevent overfitting. Lambda is an arbitrary value
+            you pick, typically around 0.01
+          </p>
+          <p><code>if (j == 0)</code></p>
+          <p id="partial-3"></p>
+          <p><code>if (j != 0)</code></p>
+          <p id="partial-4"></p>
+        </section>
 
-          <section>
-            <h3 class="major">The Result</h3>
-            <p>
-              I chose 45 data points from each species, a total of 135 data points.
-              After ~35,000 iterations, my derivatives have converged and this is the
-              parameters I have obtained from my training set.
-            </p>
-            <p id="params-1"></p>
-            <p id="params-2"></p>
-            <p>
-              I used 15 data points as test set. The computer had not seen these
-              data points before and it was able to classify them to the correct
-              species.
-            </p>
-            <div class="table-wrapper">
-              <table class="alt">
-                <thead>
-                  <tr>
-                    <th>Sepal Length</th>
-                    <th>Sepal Width</th>
-                    <th>Petal Length</th>
-                    <th>Petal Width</th>
-                    <th>Actual Species (Class)</th>
-                    <th>Prediction</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>4.8 cm</td>
-                    <td>3 cm</td>
-                    <td>1.4 cm</td>
-                    <td>0.3 cm</td>
-                    <td>[1, 0, 0]</td>
-                    <td>[95.12%, 4.89%, 0.74%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.1 cm</td>
-                    <td>3.8 cm</td>
-                    <td>1.6 cm</td>
-                    <td>0.2 cm</td>
-                    <td>[1, 0, 0]</td>
-                    <td>[96.37%, 3.86%, 0.66%]</td>
-                  </tr>
-                  <tr>
-                    <td>4.6 cm</td>
-                    <td>3.2 cm</td>
-                    <td>1.4 cm</td>
-                    <td>0.2 cm</td>
-                    <td>[1, 0, 0]</td>
-                    <td>[95.68%, 4.44%, 0.71%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.3 cm</td>
-                    <td>3.7 cm</td>
-                    <td>1.5 cm</td>
-                    <td>0.2 cm</td>
-                    <td>[1, 0, 0]</td>
-                    <td>[96.53%, 3.72%, 0.65%]</td>
-                  </tr>
-                  <tr>
-                    <td>5 cm</td>
-                    <td>3.3 cm</td>
-                    <td>1.4 cm</td>
-                    <td>0.2 cm</td>
-                    <td>[1, 0, 0]</td>
-                    <td>[96.09%, 4.1%, 0.68%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.7 cm</td>
-                    <td>3 cm</td>
-                    <td>4.2 cm</td>
-                    <td>1.2 cm</td>
-                    <td>[0, 1, 0]</td>
-                    <td>[3.61%, 86.57%, 7.81%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.7 cm</td>
-                    <td>2.9 cm</td>
-                    <td>4.2 cm</td>
-                    <td>1.3 cm</td>
-                    <td>[0, 1, 0]</td>
-                    <td>[3.32%, 85.19%, 9.29%]</td>
-                  </tr>
-                  <tr>
-                    <td>6.2 cm</td>
-                    <td>2.9 cm</td>
-                    <td>4.3 cm</td>
-                    <td>1.3 cm</td>
-                    <td>[0, 1, 0]</td>
-                    <td>[3.39%, 87.27%, 7.91%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.1 cm</td>
-                    <td>2.5 cm</td>
-                    <td>3 cm</td>
-                    <td>1.1 cm</td>
-                    <td>[0, 1, 0]</td>
-                    <td>[9.5%, 78.87%, 4.42%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.7 cm</td>
-                    <td>2.8 cm</td>
-                    <td>4.1 cm</td>
-                    <td>1.3 cm</td>
-                    <td>[0, 1, 0]</td>
-                    <td>[3.42%, 85.55%, 8.82%]</td>
-                  </tr>
-                  <tr>
-                    <td>6.7 cm</td>
-                    <td>3 cm</td>
-                    <td>5.2 cm</td>
-                    <td>2.3 cm</td>
-                    <td>[0, 0, 1]</td>
-                    <td>[1.25%, 14.69%, 85.84%]</td>
-                  </tr>
-                  <tr>
-                    <td>6.3 cm</td>
-                    <td>2.5 cm</td>
-                    <td>5 cm</td>
-                    <td>1.9 cm</td>
-                    <td>[0, 0, 1]</td>
-                    <td>[1.3%, 17.47%, 82.97%]</td>
-                  </tr>
-                  <tr>
-                    <td>6.5 cm</td>
-                    <td>3 cm</td>
-                    <td>5.2 cm</td>
-                    <td>2 cm</td>
-                    <td>[0, 0, 1]</td>
-                    <td>[1.36%, 20.55%, 79.56%]</td>
-                  </tr>
-                  <tr>
-                    <td>6.2 cm</td>
-                    <td>3.4 cm</td>
-                    <td>5.4 cm</td>
-                    <td>2.3 cm</td>
-                    <td>[0, 0, 1]</td>
-                    <td>[1.18%, 11.35%, 89.31%]</td>
-                  </tr>
-                  <tr>
-                    <td>5.9 cm</td>
-                    <td>3 cm</td>
-                    <td>5.1 cm</td>
-                    <td>1.8 cm</td>
-                    <td>[0, 0, 1]</td>
-                    <td>[1.36%, 19.71%, 80.3%]</td>
-                  </tr>
-                </tbody>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <!-- <section>
-          <h3 class="major">Image</h3>
-          <h4>Fit</h4>
-          <h4>Left &amp; Right</h4>
-          <p><span class="image left"><img src="images/pic01.jpg" alt="" /></span>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien. Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
-          <p><span class="image right"><img src="images/pic02.jpg" alt="" /></span>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius. Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat. Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui.</p>
-        </section> -->
-
-        </div>
+        <section>
+          <h3 class="major">The Result</h3>
+          <p>
+            I chose 45 data points from each species, a total of 135 data points.
+            After ~35,000 iterations, my derivatives have converged and this is the
+            parameters I have obtained from my training set.
+          </p>
+          <p id="params-1"></p>
+          <p id="params-2"></p>
+          <p>
+            I used 15 data points as test set. The computer had not seen these
+            data points before and it was able to classify them to the correct
+            species.
+          </p>
+          <div class="table-wrapper">
+            <table class="alt">
+              <thead>
+                <tr>
+                  <th>Sepal Length</th>
+                  <th>Sepal Width</th>
+                  <th>Petal Length</th>
+                  <th>Petal Width</th>
+                  <th>Actual Species (Class)</th>
+                  <th>Prediction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>4.8 cm</td>
+                  <td>3 cm</td>
+                  <td>1.4 cm</td>
+                  <td>0.3 cm</td>
+                  <td>[1, 0, 0]</td>
+                  <td>[95.12%, 4.89%, 0.74%]</td>
+                </tr>
+                <tr>
+                  <td>5.1 cm</td>
+                  <td>3.8 cm</td>
+                  <td>1.6 cm</td>
+                  <td>0.2 cm</td>
+                  <td>[1, 0, 0]</td>
+                  <td>[96.37%, 3.86%, 0.66%]</td>
+                </tr>
+                <tr>
+                  <td>4.6 cm</td>
+                  <td>3.2 cm</td>
+                  <td>1.4 cm</td>
+                  <td>0.2 cm</td>
+                  <td>[1, 0, 0]</td>
+                  <td>[95.68%, 4.44%, 0.71%]</td>
+                </tr>
+                <tr>
+                  <td>5.3 cm</td>
+                  <td>3.7 cm</td>
+                  <td>1.5 cm</td>
+                  <td>0.2 cm</td>
+                  <td>[1, 0, 0]</td>
+                  <td>[96.53%, 3.72%, 0.65%]</td>
+                </tr>
+                <tr>
+                  <td>5 cm</td>
+                  <td>3.3 cm</td>
+                  <td>1.4 cm</td>
+                  <td>0.2 cm</td>
+                  <td>[1, 0, 0]</td>
+                  <td>[96.09%, 4.1%, 0.68%]</td>
+                </tr>
+                <tr>
+                  <td>5.7 cm</td>
+                  <td>3 cm</td>
+                  <td>4.2 cm</td>
+                  <td>1.2 cm</td>
+                  <td>[0, 1, 0]</td>
+                  <td>[3.61%, 86.57%, 7.81%]</td>
+                </tr>
+                <tr>
+                  <td>5.7 cm</td>
+                  <td>2.9 cm</td>
+                  <td>4.2 cm</td>
+                  <td>1.3 cm</td>
+                  <td>[0, 1, 0]</td>
+                  <td>[3.32%, 85.19%, 9.29%]</td>
+                </tr>
+                <tr>
+                  <td>6.2 cm</td>
+                  <td>2.9 cm</td>
+                  <td>4.3 cm</td>
+                  <td>1.3 cm</td>
+                  <td>[0, 1, 0]</td>
+                  <td>[3.39%, 87.27%, 7.91%]</td>
+                </tr>
+                <tr>
+                  <td>5.1 cm</td>
+                  <td>2.5 cm</td>
+                  <td>3 cm</td>
+                  <td>1.1 cm</td>
+                  <td>[0, 1, 0]</td>
+                  <td>[9.5%, 78.87%, 4.42%]</td>
+                </tr>
+                <tr>
+                  <td>5.7 cm</td>
+                  <td>2.8 cm</td>
+                  <td>4.1 cm</td>
+                  <td>1.3 cm</td>
+                  <td>[0, 1, 0]</td>
+                  <td>[3.42%, 85.55%, 8.82%]</td>
+                </tr>
+                <tr>
+                  <td>6.7 cm</td>
+                  <td>3 cm</td>
+                  <td>5.2 cm</td>
+                  <td>2.3 cm</td>
+                  <td>[0, 0, 1]</td>
+                  <td>[1.25%, 14.69%, 85.84%]</td>
+                </tr>
+                <tr>
+                  <td>6.3 cm</td>
+                  <td>2.5 cm</td>
+                  <td>5 cm</td>
+                  <td>1.9 cm</td>
+                  <td>[0, 0, 1]</td>
+                  <td>[1.3%, 17.47%, 82.97%]</td>
+                </tr>
+                <tr>
+                  <td>6.5 cm</td>
+                  <td>3 cm</td>
+                  <td>5.2 cm</td>
+                  <td>2 cm</td>
+                  <td>[0, 0, 1]</td>
+                  <td>[1.36%, 20.55%, 79.56%]</td>
+                </tr>
+                <tr>
+                  <td>6.2 cm</td>
+                  <td>3.4 cm</td>
+                  <td>5.4 cm</td>
+                  <td>2.3 cm</td>
+                  <td>[0, 0, 1]</td>
+                  <td>[1.18%, 11.35%, 89.31%]</td>
+                </tr>
+                <tr>
+                  <td>5.9 cm</td>
+                  <td>3 cm</td>
+                  <td>5.1 cm</td>
+                  <td>1.8 cm</td>
+                  <td>[0, 0, 1]</td>
+                  <td>[1.36%, 19.71%, 80.3%]</td>
+                </tr>
+              </tbody>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
+    </div>
 
-    </section>
+  </section>
 
-    <!-- Footer -->
-    <section id="footer">
-      <div class="inner">
-        <ul class="copyright">
-          <li>&copy; Calvin Feng. All rights reserved.</li>
-          <li>Written by
-            <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
-          </li>
-        </ul>
-      </div>
-    </section>
+  <!-- Footer -->
+  <section id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>
+          Special thanks to Professor Andrew Ng's awesome lectures
+        </li>
+        <li>
+          Written by
+          <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-  </div>
-  <!-- Scripts -->
-  <script src="assets/js/skel.min.js"></script>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-  <script src="assets/js/main.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="assets/js/neural-network.js"></script>
+</div>
+<!-- Scripts -->
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="assets/js/neural-network.js"></script>
 </body>
 </html>
