@@ -19,15 +19,15 @@ katex.render(`
 let theta = document.getElementById("theta");
 katex.render(`
   \\Theta^{(1)} = \\begin{bmatrix}
-  \\theta_{00} \\theta_{01} \\theta_{02} \\theta_{03} \\theta_{04} \\\\
-  \\theta_{10} \\theta_{11} \\theta_{12} \\theta_{13} \\theta_{14} \\\\
-  \\theta_{20} \\theta_{21} \\theta_{22} \\theta_{23} \\theta_{24} \\\\
-  \\theta_{30} \\theta_{31} \\theta_{32} \\theta_{33} \\theta_{34}
+  \\theta_{00} & \\theta_{01} & \\theta_{02} & \\theta_{03} & \\theta_{04} \\\\
+  \\theta_{10} & \\theta_{11} & \\theta_{12} & \\theta_{13} & \\theta_{14} \\\\
+  \\theta_{20} & \\theta_{21} & \\theta_{22} & \\theta_{23} & \\theta_{24} \\\\
+  \\theta_{30} & \\theta_{31} & \\theta_{32} & \\theta_{33} & \\theta_{34}
   \\end{bmatrix}
   \\Theta^{(2)} = \\begin{bmatrix}
-  \\theta_{00} \\theta_{01} \\theta_{02} \\theta_{03} \\theta_{04} \\\\
-  \\theta_{10} \\theta_{11} \\theta_{12} \\theta_{13} \\theta_{14} \\\\
-  \\theta_{20} \\theta_{21} \\theta_{22} \\theta_{23} \\theta_{24}
+  \\theta_{00} & \\theta_{01} & \\theta_{02} & \\theta_{03} & \\theta_{04} \\\\
+  \\theta_{10} & \\theta_{11} & \\theta_{12} & \\theta_{13} & \\theta_{14} \\\\
+  \\theta_{20} & \\theta_{21} & \\theta_{22} & \\theta_{23} & \\theta_{24}
   \\end{bmatrix}`, theta
 );
 
@@ -58,10 +58,10 @@ let forwardProp1 = document.getElementById("forward-prop-1");
 katex.render(`
   \\Theta^{(1)} a^{(1)} =
   \\begin{bmatrix}
-  \\theta_{00} \\theta_{01} \\theta_{02} \\theta_{03} \\theta_{04} \\\\
-  \\theta_{10} \\theta_{11} \\theta_{12} \\theta_{13} \\theta_{14} \\\\
-  \\theta_{20} \\theta_{21} \\theta_{22} \\theta_{23} \\theta_{24} \\\\
-  \\theta_{30} \\theta_{31} \\theta_{32} \\theta_{33} \\theta_{34}
+  \\theta_{00} & \\theta_{01} & \\theta_{02} & \\theta_{03} & \\theta_{04} \\\\
+  \\theta_{10} & \\theta_{11} & \\theta_{12} & \\theta_{13} & \\theta_{14} \\\\
+  \\theta_{20} & \\theta_{21} & \\theta_{22} & \\theta_{23} & \\theta_{24} \\\\
+  \\theta_{30} & \\theta_{31} & \\theta_{32} & \\theta_{33} & \\theta_{34}
   \\end{bmatrix}
   \\begin{bmatrix}
   1 \\\\
@@ -86,9 +86,9 @@ let forwardProp3 = document.getElementById("forward-prop-3");
 katex.render(`
   \\Theta^{(2)} a^{(2)} =
   \\begin{bmatrix}
-  \\theta_{00} \\theta_{01} \\theta_{02} \\theta_{03} \\theta_{04} \\\\
-  \\theta_{10} \\theta_{11} \\theta_{12} \\theta_{13} \\theta_{14} \\\\
-  \\theta_{20} \\theta_{21} \\theta_{22} \\theta_{23} \\theta_{24}
+  \\theta_{00} & \\theta_{01} & \\theta_{02} & \\theta_{03} & \\theta_{04} \\\\
+  \\theta_{10} & \\theta_{11} & \\theta_{12} & \\theta_{13} & \\theta_{14} \\\\
+  \\theta_{20} & \\theta_{21} & \\theta_{22} & \\theta_{23} & \\theta_{24}
   \\end{bmatrix}
   \\begin{bmatrix}
   1 \\\\
@@ -115,11 +115,11 @@ let backProp2 = document.getElementById("back-prop-2");
 katex.render(`
   \\delta^{(2)} = (\\Theta^{(2)})^{T}\\delta^{(3)}\\cdot* g'(z^{(2)}) =
   \\begin{bmatrix}
-  \\theta_{00} \\theta_{10} \\theta_{20} \\\\
-  \\theta_{01} \\theta_{11} \\theta_{21} \\\\
-  \\theta_{02} \\theta_{12} \\theta_{22} \\\\
-  \\theta_{03} \\theta_{13} \\theta_{23} \\\\
-  \\theta_{04} \\theta_{14} \\theta_{24}
+  \\theta_{00} & \\theta_{10} & \\theta_{20} \\\\
+  \\theta_{01} & \\theta_{11} & \\theta_{21} \\\\
+  \\theta_{02} & \\theta_{12} & \\theta_{22} \\\\
+  \\theta_{03} & \\theta_{13} & \\theta_{23} \\\\
+  \\theta_{04} & \\theta_{14} & \\theta_{24}
   \\end{bmatrix}
   \\begin{bmatrix}
   \\delta^{(3)}_{1} \\\\
@@ -142,16 +142,16 @@ katex.render(`g'(z^{(2)}) = a^{(2)}\\cdot*(1 - a^{(2)}) =
 let partial1 = document.getElementById("partial-1");
 katex.render(`\\Delta^{(1)} =
   \\begin{bmatrix}
-  0 0 0 0 0\\\\
-  0 0 0 0 0\\\\
-  0 0 0 0 0\\\\
-  0 0 0 0 0
+  0 & 0 & 0 & 0 & 0\\\\
+  0 & 0 & 0 & 0 & 0\\\\
+  0 & 0 & 0 & 0 & 0\\\\
+  0 & 0 & 0 & 0 & 0
   \\end{bmatrix}
   \\Delta^{(2)} =
   \\begin{bmatrix}
-  0 0 0 0 0\\\\
-  0 0 0 0 0\\\\
-  0 0 0 0 0
+  0 & 0 & 0 & 0 & 0\\\\
+  0 & 0 & 0 & 0 & 0\\\\
+  0 & 0 & 0 & 0 & 0
   \\end{bmatrix}
 `, partial1
 );
@@ -175,3 +175,48 @@ katex.render(`\\Theta_{ij}^{(l)} = \\Theta_{ij}^{(l)} -
 );
 
 let costFunction = document.getElementById("cost-function");
+katex.render(`J(\\Theta) =
+  \\frac{\\lambda}{2m}\\sum^{L - 1}_{l = 1}\\sum^{rows}_{i=1}\\sum^{cols}_{j=1}
+  (\\Theta^{(l)}_{ij})^{2} - \\frac{1}{m}
+  \\left[
+    \\sum^{m}_{i=1}\\sum^{K}_{k=1}y_{k}^{(i)}log(h_{\\Theta}(x^{(i)}))_{k} +
+    (1 - y_{k}^{(i)})log(1 - (h_{\\Theta}(x^{(i)}))_{k})
+  \\right]
+  `, costFunction
+);
+
+let partialApprox = document.getElementById("partial-approx");
+katex.render(`\\frac{\\partial}{\\partial\\theta^{(l)}_{ij}}J_{\\Theta}\\approx
+  \\frac{J_{\\Theta}(\\theta^{(l)}_{ij} + \\epsilon) - J_{\\Theta}(\\theta^{(l)}_{ij} - \\epsilon)}
+  {2\\epsilon}
+  `, partialApprox
+);
+
+// let params = [
+//   [[-0.894, -0.236, -0.947, 1.673, 0.725],
+//   [-0.389, 0.298, 0.871, -1.320, -0.574],
+//   [4.335, 1.593, 1.662, -2.848, -3.070],
+//   [1.017, 0.254, 1.066, -1.937, -0.786]],
+//   [[-1.677, -2.871, 1.630, 0.918, 2.844],
+//   [-4.085, 1.729, -1.258, 4.815, -3.034],
+//   [1.377, 1.129, -0.732, -5.129, -0.692]]
+// ];
+
+let params1 = document.getElementById("params-1");
+katex.render(`\\Theta^{(1)} =
+  \\begin{bmatrix}
+  -0.894 & -0.236 & -0.947 & 1.673 & 0.725 \\\\
+  -0.389 & 0.298 & 0.871 & -1.320 & -0.574 \\\\
+   4.335 & 1.593 &  1.662 & -2.848 & -3.070 \\\\
+   1.017 & 0.254 & 1.066 & -1.937 & -0.786
+  \\end{bmatrix}`, params1
+);
+
+let params2 = document.getElementById("params-2");
+katex.render(`\\Theta^{(2)} =
+  \\begin{bmatrix}
+  -1.677 & -2.871 & 1.630 & 0.918 & 2.844 \\\\
+  -4.085 & 1.729 & -1.258 & 4.815 & -3.034 \\\\
+   1.377 & 1.129 & -0.732 & -5.129 & -0.692
+   \\end{bmatrix}`, params2
+);
