@@ -1,0 +1,166 @@
+<html>
+<head>
+  <title>Clustering</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+</head>
+<body>
+  <div id="page-wrapper">
+    <header id="header">
+      <h1><a href="index.html">Back to Index</a></h1>
+      <nav>
+        <a href="https://github.com/calvinfeng/LogisticRegression">source code</a>
+      </nav>
+    </header>
+
+    <section id="wrapper">
+      <header>
+        <div class="inner">
+          <h2>K-means</h2>
+          <p>An algorithm for clustering unlabeled data</p>
+        </div>
+      </header>
+    </section>
+    <!-- Content -->
+    <div class="wrapper">
+      <div class="inner">
+        <section>
+          <h3 class="major">K and means</h3>
+          <p>
+            The basic premise of the problem is that we are given a set of unlabeled data, i.e.
+            a set of input vectors that has no output. We want to group them together and try to
+            identify meaningful grouping in the data set. The letter <strong>k</strong> represents the
+            number of group or cluster we wish to categorize our data set into. The <strong>means</strong>
+            suggest that the algorithm is averaging some values and we shall see what is it averaging soon.
+          </p>
+        </section>
+
+        <section>
+          <h3 class="major">Algorithm</h3>
+          <p>
+            The algorithm is broken down to two major steps, <strong>assignment</strong> and <strong>update</strong>
+          </p>
+          <h4>Initialization</h4>
+          We need to randomly select <strong>k</strong> data points to be our centroids
+          <pre>
+            <code class="py">
+              def k_mean(data, k):
+                centroids = []
+                random_idx = generate_uniq_randoms(len(data), k)
+                # Randomly initializing centroids
+                for i in range(0, k):
+                  new_centroid = []
+                  for j in range(0, len(data[i])):
+                    new_centroid.append(data[random_idx[i]][j])
+                  centroids.append(new_centroid)
+            </code>
+          </pre>
+          <h4>Assignment Step</h4>
+          Once the centroids are selected, we need to assign every single data point to its nearest
+          centroid. <code>centroids</code> is an array. We iterate through every data point and find
+          a centroid that is geometrically closest to it. Then we assign a label to the data point, in my case,
+          I am using the index of the centroids array as label.
+          <pre>
+            <code class="py">
+              for i in range(0, len(data)):
+                labels[i] = assign_label(data[i], centroids)
+            </code>
+            <code class="py">
+              # For every data point, we must iterate through all centroids to find the one
+              # that is the nearest.
+              def assign_label(point, centroids):
+                min_distance = None
+                centroid_idx = None
+                for i in range(0, len(centroids)):
+                dist = distance(point, centroids[i])
+                if min_distance == None or dist < min_distance:
+                  min_distance = dist
+                  centroid_idx = i
+                return centroid_idx
+            </code>
+          </pre>
+          <h4>Update Step</h4>
+          After the label has been assigned, we need to re-position the centroids by averaging the location
+          of all labeled data points. For example, <code>data[0]</code> and <code>data[1]</code> have been labeled
+          to <code>centroids[0]</code>. The position of <code>centroids[0]</code> will be re-assigned to the
+          averaged location of the two data points.
+          <pre>
+            <code class="py">
+              cluster_averages = compute_cluster_average(k, 2, data, labels)
+              # This is redundant, we can just re-assign centroids to be the cluster averages
+              for i in range(0, len(centroids)):
+                centroids[i] = cluster_averages[i]
+            </code>
+            <code class="py">
+              def compute_cluster_average(k, dimen, data, labels):
+                cluster_averages = []
+                cluster_population = [0]*k
+                # we have k clusters and we are going to initlize 0 values for averages
+                for i in range(0, k):
+                  cluster_averages.append([0]*dimen)
+
+                for i in range(0, len(data)):
+                  cluster_idx = labels[i]
+                  cluster_population[cluster_idx] += 1
+                  for j in range(0, dimen):
+                    cluster_averages[cluster_idx][j] += data[i][j]
+
+                for i in range(0, k):
+                  for j in range(0, dimen):
+                    cluster_averages[i][j] = cluster_averages[i][j]/cluster_population[i]
+
+                return cluster_averages
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h3 class="major">Putting it together</h3>
+          We will run the assignment and update step repeatedly in a while loop. The loop breaking condition is that
+          when the update does not produce any new changes, that is when centroids and cluster averages are identical.
+          <pre>
+            <code class="py">
+              def k_mean(data, k):
+                  centroids = []
+                  random_idx = generate_uniq_randoms(len(data), k)
+                  for i in range(0, k):
+                      new_centroid = []
+                      for j in range(0, len(data[i])):
+                          new_centroid.append(data[random_idx[i]][j])
+                      centroids.append(new_centroid)
+
+                  labels = [None]*len(data)
+                  while True:
+                      for i in range(0, len(data)):
+                          labels[i] = assign_label(data[i], centroids)
+                      cluster_averages = compute_cluster_average(k, 2, data, labels)
+                      if is_equal(centroids, cluster_averages):
+                          break
+                      else:
+                          centroids[i] = cluster_averages[i]
+                  return labels
+            </code>
+          </pre>
+          <h3 class="major">Result</h3>
+          The following is a movie rating dataset from IMBD. This is a movie rating versus gross plot.
+          Every single data point represents a movie. The dataset contains 5000 movies produced from early
+          1900s to 2016.
+          <div style="display: flex; justify-content: center; margin-top:1em;">
+            <img height="400" src="./images/cluster.png" />
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="assets/js/clustering.js"></script>
+</body>

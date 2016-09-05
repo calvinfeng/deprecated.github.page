@@ -1,4 +1,5 @@
-/* global katex */
+/* global katex hljs */
+hljs.initHighlightingOnLoad();
 
 let sigmoid = document.getElementById('sigmoid');
 katex.render(`g(z) = \\frac{1}{1 + e^{-z}}`, sigmoid);

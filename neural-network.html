@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
   <link rel="stylesheet" href="assets/css/neural-network.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
   <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
   <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
   <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -192,7 +194,7 @@
           </p>
           <p id="forward-prop-4"></p>
           <pre>
-            <code>
+            <code class="javascript">
               function forwardProp(inputVector, weights) {
                 let z, activations = [inputVector];
                 for (let l = 0; l < weights.length; l++) {
@@ -235,7 +237,7 @@
             we use 0 when we code.
           </p>
           <pre>
-            <code>
+            <code class="javascript">
               //The return value of h is an array
               //h[k] => h[0], h[1], h[2] which is the activation vector of last layer
               //y[k] => y[0], y[1], y[2] from trainingSet
@@ -307,7 +309,7 @@
             Thus, there shouldn't be any error term associated with the input layer.
           </p>
           <pre>
-            <code>
+            <code class="javascript">
               function backProp(aVectors, yVec, weights) {
                 let L = aVectors.length - 1; // aVectors : activiation vectors
                 let deltaVectors = [Vector.substract(aVectors[L], yVec)];

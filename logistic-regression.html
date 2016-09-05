@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-Solid State by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
   <title>Logistic Regression</title>
@@ -24,438 +19,420 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
       <nav>
         <a href="https://github.com/calvinfeng/LogisticRegression">source code</a>
       </nav>
-      <!-- <nav>
-      <a href="#menu">Menu</a>
-    </nav> -->
-  </header>
+    </header>
 
-  <!-- Menu -->
-  <!-- <nav id="menu">
-  <div class="inner">
-  <h2>Menu</h2>
-  <ul class="links">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="generic.html">Generic</a></li>
-  <li><a href="elements.html">Elements</a></li>
-  <li><a href="#">Log In</a></li>
-  <li><a href="#">Sign Up</a></li>
-</ul>
-<a href="#" class="close">Close</a>
-</div>
-</nav> -->
-
-<!-- Wrapper -->
-<section id="wrapper">
-  <header>
-    <div class="inner">
-      <h2>Logistic Regression</h2>
-      <p>A linear classifier optimized by gradient descent</p>
-    </div>
-  </header>
-
-  <!-- Content -->
-  <div class="wrapper">
-    <div class="inner">
-
-      <section>
-        <h3 class="major">The Classification Problem: Win or Loss?</h3>
-        <p>
-          Riot Games' League of Legend is a popular massive multiplayer online battle arena (MMOBA.)
-          Players are grouped into teams of five to compete for territorial control.
-          Every match composes of two teams competing for victory. Perhaps, wikipedia explains it better.
-        </p>
-        <blockquote>
-          In League of Legends, players assume the role of an unseen "summoner" that controls a "champion" with unique abilities
-          and battle against a team of other players or computer-controlled champions. The goal is usually to destroy the opposing team's "nexus",
-          a structure which lies at the heart of a base protected by defensive structures. Each League of Legends match is discrete, with all
-          champions starting off fairly weak but increasing in strength by accumulating items and experience over the course of the game.
-        </blockquote>
-        <p>
-          Riot has released extensive amount of match data to the public through its API. Every individual match
-          contains substantial amount of information of the game and players' stats. I pulled 100 matches from
-          the seed data.
-        </p>
-        <p>
-          I am interested to teach a machine to <i>recognize</i> key indication(s) of a team is winning
-          through supervised learning. Given a set of input, the learning algorithm should be able to classify
-          whether a team is winning or lossing, a simple binary classifier.
-        </p>
-
-        <h3 class="major">Hypothesis</h3>
-        <p id="sigmoid"></p>
-        <p>
-          Sigmoid function is a S-shaped function with a range from 0 to 1. This is
-          the basis for our hypothesis for logistic regression because we are interested in
-          asking a binary question. g(0) = 0.50, which is known as the decision boundary.
-          Any input that leads to g(z) > 0.50, is a "yes", otherwise "no".
-        </p>
-        <p id="hypothesis"></p>
-        <p id="theta-T-x"></p>
-        <p>
-          The x vector is called the feature vector. Therefore, the input z is a linear
-          combination of our features. The coefficients are the parameters we are trying
-          to find to best fit the training set we are given.
-        </p>
-        <p id="probability"></p>
-        <p>
-          Once again, the hypothesis function is predicting the likelihood that y = 1,
-          given a set of input (features) and parameters (thetas.)
-        </p>
-        <pre>
-          <code>
-            function thetaTransposeX(theta, xVector) {
-              let sum = theta[0];
-              for (let i = 0; i < xVector.length; i++) {
-                sum += xVector[i]*theta[i + 1];
-              }
-              return sum;
-            }
-
-            // Hypothesis function
-            function sigmoid(theta, xVector) {
-              return 1/(1 + Math.exp(-1 * thetaTransposeX(theta, xVector)));
-            }
-          </code>
-        </pre>
-
-        <h3 class="major">Minimizing the Cost Function: Gradient Descent</h3>
-        <p id="cost-function"></p>
-        <p>
-          The cost function J is describing how well the hypothesis fits with
-          the training data. Higher the cost, worse the fitting is.
-          Suppose that h predicts 0 for a given x vector, but the actual data y = 1,
-          the cost function will approach infinity. The reverse is also true,
-          if h predicts 1 while y = 0, J will approach infinity.
-        </p>
-        <pre>
-          <code>
-            function costFunction(theta, x, y, lambda) {
-              // m denotes # of data points, n denotes # of features.
-              let m = y.length, n = theta.length;
-              let regularizedFactor = theta.slice(1).reduce((accum, el) => {return accum + el;});
-              regularizedFactor *= lambda/(2*m);
-              let sum = 0;
-              for (let i = 0; i < m; i++) {
-                let temp = y[i]*Math.log(sigmoid(theta, x[i]));
-                temp += (1 - y[i])*Math.log(1 - sigmoid(theta, x[i]));
-                sum += temp;
-              }
-              return regularizedFactor - (sum/m);
-            }
-          </code>
-        </pre>
-        <p>
-          One might ask, what is lambda? This is called the regularized constant.
-          Lambda provides a fix for the overfitting problem. Sometimes, the parameters
-          closely fit the training set but fail to generalize to make future prediction.
-          Lambda is here to control the generality of the parameters.
-        </p>
-        <h3>Gradient Descent</h3>
-        <p id="gradient"></p>
-        <p>
-          What is a gradient? It is a vector of derivatives. It represents a slope with
-          a direction at a given point. More precisely, it points in the direction
-          of the greatest rate of increase of the function. The triangle thing is
-          the gradient operator.
-        </p>
-        <h3>Algorithm</h3>
-        <p>
-          Our goal here is to minimize J. In Calculus, we find local minima by setting
-          the derivative to zero and solve for x. In here, we can't really solve it analytically,
-          but we can solve it iteratively. Here comes gradient descent. Since gradient
-          points to the greatest increase of the function, we will go the opposite way.
-          Eventually we will hit a minima.
-        </p>
-        <p>
-          Repeat until convergence:
-        </p>
-        <p id="gradient-descent"></p>
-        <p id="algorithm-1"></p>
-        <p id="algorithm-2"></p>
-        <pre>
-          <code>
-            function gradientDescent(x, y) {
-              // a: learning rate, lambda: regularization
-              let a = 0.01, lambda = 0.001, thetas = [0, 0, 0, 0];
-              let n = thetas.length, gradient;
-              do {
-                let thetasTemp = thetas.slice();
-                gradient = [djTheta0(thetasTemp, x, y)];
-                for (let j = 1; j < n; j++) {
-                  gradient.push(djThetaJ(thetasTemp, x, y, j, lambda));
-                }
-
-                for (let j = 0; j < n; j++) {
-                  thetas[j] = thetas[j] - (a*gradient[j]);
-                }
-                console.log(`Cost function: ${costFunction(thetas, x, y, lambda)}`);
-                console.log(`Vector norm of gradient vector: ${vectorNorm(gradient)}`);
-              } while (!isConverged(gradient));
-
-              return thetas;
-            }
-          </code>
-        </pre>
-      </section>
-
-      <section>
-        <h3 class="major">Training Set</h3>
-        <p>
-          The training set is composed of 180 teams in 90 matches
-        </p>
-        <div id="data-plot" style="margin-bottom: 1em"></div>
-        <h4>Legend</h4>
-        <ul class="alt">
-          <li>x - amount of gold earned per second as a team</li>
-          <li>y - team's kills and assists to death ratio</li>
-          <li>z - minion kills per minute from 0 to 20 minutes mark</li>
-        </ul>
-      </section>
-
-      <section id="data-section">
-        <h3 class="major">Test set</h3>
-        <p>
-          The test set is composed of 20 teams in 10 matches. The output of
-          the regression model is a number between 0 and 1 that represents
-          the probability of a given team winning the match. For the ease of
-          reading, I've converted the probability to percentage and rounded
-          data to nearest 3 decimal places
-        </p>
-        <p id="params"></p>
-        <p id="prediction"></p>
-        <div class="table-wrapper">
-          <table class="alt">
-            <thead>
-              <tr>
-                <th>Match ID</th>
-                <th>Team gold earned per sec (x1)</th>
-                <th>Team KDA (x2)</th>
-                <th>Team CS per min (x3)</th>
-                <th>Prediction</th>
-                <th>Actual Win/Loss</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2054999086</td>
-                <td>24.471</td>
-                <td>1.030</td>
-                <td>15.250</td>
-                <td>5.75%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999086</td>
-                <td>33.724</td>
-                <td>5.600</td>
-                <td>20.650</td>
-                <td>99.94%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999093</td>
-                <td>25.793</td>
-                <td>0.844</td>
-                <td>17.500</td>
-                <td>1.58%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999093</td>
-                <td>35.301</td>
-                <td>4.810</td>
-                <td>16.100</td>
-                <td>99.91%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999124</td>
-                <td>25.031</td>
-                <td>1.167</td>
-                <td>14.350</td>
-                <td>11.03%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999124</td>
-                <td>32.729</td>
-                <td>3.294</td>
-                <td>18.200</td>
-                <td>89.85%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999127</td>
-                <td>35.063</td>
-                <td>3.792</td>
-                <td>23.800</td>
-                <td>80.3%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999127</td>
-                <td>27.297</td>
-                <td>1.941</td>
-                <td>18.900</td>
-                <td>15.05%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999129</td>
-                <td>36.197</td>
-                <td>4.476</td>
-                <td>19.500</td>
-                <td>99.23%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999129</td>
-                <td>25.987</td>
-                <td>1.275</td>
-                <td>14.950</td>
-                <td>11.73%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999137</td>
-                <td>35.891</td>
-                <td>7.800</td>
-                <td>18.300</td>
-                <td>100%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999137</td>
-                <td>23.414</td>
-                <td>0.564</td>
-                <td>17.100</td>
-                <td>0.86%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999150</td>
-                <td>31.156</td>
-                <td>3.636</td>
-                <td>20.350</td>
-                <td>90.57</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999150</td>
-                <td>25.986</td>
-                <td>1.563</td>
-                <td>17.650</td>
-                <td>9.31%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999322</td>
-                <td>28.097</td>
-                <td>1.318</td>
-                <td>15.350</td>
-                <td>11.55%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999322</td>
-                <td>34.911</td>
-                <td>3.571</td>
-                <td>17.100</td>
-                <td>96.62%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999360</td>
-                <td>23.909</td>
-                <td>0.667</td>
-                <td>19.950</td>
-                <td>0.39%</td>
-                <td>Loss</td>
-              </tr>
-              <tr>
-                <td>2054999360</td>
-                <td>31.892</td>
-                <td>8.700</td>
-                <td>17.650</td>
-                <td>100%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999430</td>
-                <td>32.794</td>
-                <td>4.150</td>
-                <td>15.100</td>
-                <td>99.64%</td>
-                <td>Win</td>
-              </tr>
-              <tr>
-                <td>2054999430</td>
-                <td>25.012</td>
-                <td>1.048</td>
-                <td>13.950</td>
-                <td>9.51%</td>
-                <td>Loss</td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- Wrapper -->
+    <section id="wrapper">
+      <header>
+        <div class="inner">
+          <h2>Logistic Regression</h2>
+          <p>A linear classifier optimized by gradient descent</p>
         </div>
-      </section>
+      </header>
 
-      <section>
-        <h3 class="major">Discussion</h3>
-        <p>
-          It's very trivial to human that whichever team has the most kill to death ratio
-          should win the game. After all this is an arena game, players fight each other to "death"
-          and score kills to earn gold. The team that has the most kills will tend to have more gold.
-          However, this is not trivial to a computer.
-        </p>
-        <p>
-          Computer has no knowledge of the gameplay and the rules that
-          govern win/loss. Computer can only observe and devise correlation between
-          input and outcome of the game. In this exercise, the computer has successfully "learned"
-          a pattern from training set and apply it to test set to predict that KDA has the most
-          influence on the probability of a given team winning the game. One surprising fact is that
-          creep score has very little correlation with winning the game. Killing more creeps in the
-          first 20 minutes does not help with winning the game. Team work plays a larger role.
-        </p>
-        <p>
-          The algorithm is a linear classifier, because the decision boundary is a straight
-          line in the 3-dimensional input vector space. That is, a straight line(plane) can be drawn
-          to distinguish the winning data point from the losing data point.
-        </p>
-        <p>
-          This regression model can be applied to many other binary classification
-          problems. League of Legend was chosen due to convenience.
-        </p>
-      </section>
+      <!-- Content -->
+      <div class="wrapper">
+        <div class="inner">
 
-    </div>
+          <section>
+            <h3 class="major">The Classification Problem: Win or Loss?</h3>
+            <p>
+              Riot Games' League of Legend is a popular massive multiplayer online battle arena (MMOBA.)
+              Players are grouped into teams of five to compete for territorial control.
+              Every match composes of two teams competing for victory. Perhaps, wikipedia explains it better.
+            </p>
+            <blockquote>
+              In League of Legends, players assume the role of an unseen "summoner" that controls a "champion" with unique abilities
+              and battle against a team of other players or computer-controlled champions. The goal is usually to destroy the opposing team's "nexus",
+              a structure which lies at the heart of a base protected by defensive structures. Each League of Legends match is discrete, with all
+              champions starting off fairly weak but increasing in strength by accumulating items and experience over the course of the game.
+            </blockquote>
+            <p>
+              Riot has released extensive amount of match data to the public through its API. Every individual match
+              contains substantial amount of information of the game and players' stats. I pulled 100 matches from
+              the seed data.
+            </p>
+            <p>
+              I am interested to teach a machine to <i>recognize</i> key indication(s) of a team is winning
+              through supervised learning. Given a set of input, the learning algorithm should be able to classify
+              whether a team is winning or lossing, a simple binary classifier.
+            </p>
+
+            <h3 class="major">Hypothesis</h3>
+            <p id="sigmoid"></p>
+            <p>
+              Sigmoid function is a S-shaped function with a range from 0 to 1. This is
+              the basis for our hypothesis for logistic regression because we are interested in
+              asking a binary question. g(0) = 0.50, which is known as the decision boundary.
+              Any input that leads to g(z) > 0.50, is a "yes", otherwise "no".
+            </p>
+            <p id="hypothesis"></p>
+            <p id="theta-T-x"></p>
+            <p>
+              The x vector is called the feature vector. Therefore, the input z is a linear
+              combination of our features. The coefficients are the parameters we are trying
+              to find to best fit the training set we are given.
+            </p>
+            <p id="probability"></p>
+            <p>
+              Once again, the hypothesis function is predicting the likelihood that y = 1,
+              given a set of input (features) and parameters (thetas.)
+            </p>
+            <pre>
+              <code>
+                function thetaTransposeX(theta, xVector) {
+                  let sum = theta[0];
+                  for (let i = 0; i < xVector.length; i++) {
+                    sum += xVector[i]*theta[i + 1];
+                  }
+                  return sum;
+                }
+
+                // Hypothesis function
+                function sigmoid(theta, xVector) {
+                  return 1/(1 + Math.exp(-1 * thetaTransposeX(theta, xVector)));
+                }
+              </code>
+            </pre>
+
+            <h3 class="major">Minimizing the Cost Function: Gradient Descent</h3>
+            <p id="cost-function"></p>
+            <p>
+              The cost function J is describing how well the hypothesis fits with
+              the training data. Higher the cost, worse the fitting is.
+              Suppose that h predicts 0 for a given x vector, but the actual data y = 1,
+              the cost function will approach infinity. The reverse is also true,
+              if h predicts 1 while y = 0, J will approach infinity.
+            </p>
+            <pre>
+              <code>
+                function costFunction(theta, x, y, lambda) {
+                  // m denotes # of data points, n denotes # of features.
+                  let m = y.length, n = theta.length;
+                  let regularizedFactor = theta.slice(1).reduce((accum, el) => {return accum + el;});
+                  regularizedFactor *= lambda/(2*m);
+                  let sum = 0;
+                  for (let i = 0; i < m; i++) {
+                    let temp = y[i]*Math.log(sigmoid(theta, x[i]));
+                    temp += (1 - y[i])*Math.log(1 - sigmoid(theta, x[i]));
+                    sum += temp;
+                  }
+                  return regularizedFactor - (sum/m);
+                }
+              </code>
+            </pre>
+            <p>
+              One might ask, what is lambda? This is called the regularized constant.
+              Lambda provides a fix for the overfitting problem. Sometimes, the parameters
+              closely fit the training set but fail to generalize to make future prediction.
+              Lambda is here to control the generality of the parameters.
+            </p>
+            <h3>Gradient Descent</h3>
+            <p id="gradient"></p>
+            <p>
+              What is a gradient? It is a vector of derivatives. It represents a slope with
+              a direction at a given point. More precisely, it points in the direction
+              of the greatest rate of increase of the function. The triangle thing is
+              the gradient operator.
+            </p>
+            <h3>Algorithm</h3>
+            <p>
+              Our goal here is to minimize J. In Calculus, we find local minima by setting
+              the derivative to zero and solve for x. In here, we can't really solve it analytically,
+              but we can solve it iteratively. Here comes gradient descent. Since gradient
+              points to the greatest increase of the function, we will go the opposite way.
+              Eventually we will hit a minima.
+            </p>
+            <p>
+              Repeat until convergence:
+            </p>
+            <p id="gradient-descent"></p>
+            <p id="algorithm-1"></p>
+            <p id="algorithm-2"></p>
+            <pre>
+              <code>
+                function gradientDescent(x, y) {
+                  // a: learning rate, lambda: regularization
+                  let a = 0.01, lambda = 0.001, thetas = [0, 0, 0, 0];
+                  let n = thetas.length, gradient;
+                  do {
+                    let thetasTemp = thetas.slice();
+                    gradient = [djTheta0(thetasTemp, x, y)];
+                    for (let j = 1; j < n; j++) {
+                      gradient.push(djThetaJ(thetasTemp, x, y, j, lambda));
+                    }
+
+                    for (let j = 0; j < n; j++) {
+                      thetas[j] = thetas[j] - (a*gradient[j]);
+                    }
+                    console.log(`Cost function: ${costFunction(thetas, x, y, lambda)}`);
+                    console.log(`Vector norm of gradient vector: ${vectorNorm(gradient)}`);
+                  } while (!isConverged(gradient));
+
+                  return thetas;
+                }
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h3 class="major">Training Set</h3>
+            <p>
+              The training set is composed of 180 teams in 90 matches
+            </p>
+            <div id="data-plot" style="margin-bottom: 1em"></div>
+            <h4>Legend</h4>
+            <ul class="alt">
+              <li>x - amount of gold earned per second as a team</li>
+              <li>y - team's kills and assists to death ratio</li>
+              <li>z - minion kills per minute from 0 to 20 minutes mark</li>
+            </ul>
+          </section>
+
+          <section id="data-section">
+            <h3 class="major">Test set</h3>
+            <p>
+              The test set is composed of 20 teams in 10 matches. The output of
+              the regression model is a number between 0 and 1 that represents
+              the probability of a given team winning the match. For the ease of
+              reading, I've converted the probability to percentage and rounded
+              data to nearest 3 decimal places
+            </p>
+            <p id="params"></p>
+            <p id="prediction"></p>
+            <div class="table-wrapper">
+              <table class="alt">
+                <thead>
+                  <tr>
+                    <th>Match ID</th>
+                    <th>Team gold earned per sec (x1)</th>
+                    <th>Team KDA (x2)</th>
+                    <th>Team CS per min (x3)</th>
+                    <th>Prediction</th>
+                    <th>Actual Win/Loss</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2054999086</td>
+                    <td>24.471</td>
+                    <td>1.030</td>
+                    <td>15.250</td>
+                    <td>5.75%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999086</td>
+                    <td>33.724</td>
+                    <td>5.600</td>
+                    <td>20.650</td>
+                    <td>99.94%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999093</td>
+                    <td>25.793</td>
+                    <td>0.844</td>
+                    <td>17.500</td>
+                    <td>1.58%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999093</td>
+                    <td>35.301</td>
+                    <td>4.810</td>
+                    <td>16.100</td>
+                    <td>99.91%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999124</td>
+                    <td>25.031</td>
+                    <td>1.167</td>
+                    <td>14.350</td>
+                    <td>11.03%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999124</td>
+                    <td>32.729</td>
+                    <td>3.294</td>
+                    <td>18.200</td>
+                    <td>89.85%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999127</td>
+                    <td>35.063</td>
+                    <td>3.792</td>
+                    <td>23.800</td>
+                    <td>80.3%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999127</td>
+                    <td>27.297</td>
+                    <td>1.941</td>
+                    <td>18.900</td>
+                    <td>15.05%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999129</td>
+                    <td>36.197</td>
+                    <td>4.476</td>
+                    <td>19.500</td>
+                    <td>99.23%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999129</td>
+                    <td>25.987</td>
+                    <td>1.275</td>
+                    <td>14.950</td>
+                    <td>11.73%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999137</td>
+                    <td>35.891</td>
+                    <td>7.800</td>
+                    <td>18.300</td>
+                    <td>100%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999137</td>
+                    <td>23.414</td>
+                    <td>0.564</td>
+                    <td>17.100</td>
+                    <td>0.86%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999150</td>
+                    <td>31.156</td>
+                    <td>3.636</td>
+                    <td>20.350</td>
+                    <td>90.57</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999150</td>
+                    <td>25.986</td>
+                    <td>1.563</td>
+                    <td>17.650</td>
+                    <td>9.31%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999322</td>
+                    <td>28.097</td>
+                    <td>1.318</td>
+                    <td>15.350</td>
+                    <td>11.55%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999322</td>
+                    <td>34.911</td>
+                    <td>3.571</td>
+                    <td>17.100</td>
+                    <td>96.62%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999360</td>
+                    <td>23.909</td>
+                    <td>0.667</td>
+                    <td>19.950</td>
+                    <td>0.39%</td>
+                    <td>Loss</td>
+                  </tr>
+                  <tr>
+                    <td>2054999360</td>
+                    <td>31.892</td>
+                    <td>8.700</td>
+                    <td>17.650</td>
+                    <td>100%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999430</td>
+                    <td>32.794</td>
+                    <td>4.150</td>
+                    <td>15.100</td>
+                    <td>99.64%</td>
+                    <td>Win</td>
+                  </tr>
+                  <tr>
+                    <td>2054999430</td>
+                    <td>25.012</td>
+                    <td>1.048</td>
+                    <td>13.950</td>
+                    <td>9.51%</td>
+                    <td>Loss</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="major">Discussion</h3>
+            <p>
+              It's very trivial to human that whichever team has the most kill to death ratio
+              should win the game. After all this is an arena game, players fight each other to "death"
+              and score kills to earn gold. The team that has the most kills will tend to have more gold.
+              However, this is not trivial to a computer.
+            </p>
+            <p>
+              Computer has no knowledge of the gameplay and the rules that
+              govern win/loss. Computer can only observe and devise correlation between
+              input and outcome of the game. In this exercise, the computer has successfully "learned"
+              a pattern from training set and apply it to test set to predict that KDA has the most
+              influence on the probability of a given team winning the game. One surprising fact is that
+              creep score has very little correlation with winning the game. Killing more creeps in the
+              first 20 minutes does not help with winning the game. Team work plays a larger role.
+            </p>
+            <p>
+              The algorithm is a linear classifier, because the decision boundary is a straight
+              line in the 3-dimensional input vector space. That is, a straight line(plane) can be drawn
+              to distinguish the winning data point from the losing data point.
+            </p>
+            <p>
+              This regression model can be applied to many other binary classification
+              problems. League of Legend was chosen due to convenience.
+            </p>
+          </section>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
+        <ul class="copyright">
+          <li>
+            Written by
+            <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
   </div>
 
-</section>
-
-<!-- Footer -->
-<section id="footer">
-  <div class="inner">
-    <ul class="copyright">
-      <li>
-        Written by
-        <a href="https://www.linkedin.com/in/calvin-feng">Calvin Feng</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-</div>
-
-<!-- Scripts -->
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="assets/js/logistic-regression.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <!-- Scripts -->
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="assets/js/logistic-regression.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 </body>
 </html>
