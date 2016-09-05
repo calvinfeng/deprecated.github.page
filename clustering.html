@@ -14,7 +14,7 @@
     <header id="header">
       <h1><a href="index.html">Back to Index</a></h1>
       <nav>
-        <a href="https://github.com/calvinfeng/LogisticRegression">source code</a>
+        <a href="https://github.com/calvinfeng/KMeans/blob/master/k_mean.py">source code</a>
       </nav>
     </header>
 
@@ -32,6 +32,7 @@
         <section>
           <h3 class="major">K and means</h3>
           <p>
+            K-means is a very popular clustering algorithm that is frankly quite easy to implement.
             The basic premise of the problem is that we are given a set of unlabeled data, i.e.
             a set of input vectors that has no output. We want to group them together and try to
             identify meaningful grouping in the data set. The letter <strong>k</strong> represents the
@@ -145,13 +146,20 @@
                   return labels
             </code>
           </pre>
-          <h3 class="major">Result</h3>
+          <h3 class="major">Example</h3>
           The following is a movie rating dataset from IMBD. This is a movie rating versus gross plot.
-          Every single data point represents a movie. The dataset contains 5000 movies produced from early
-          1900s to 2016.
-          <div style="display: flex; justify-content: center; margin-top:1em;">
+          The individual data point represents a movie. The dataset contains 5000 movies produced from early
+          1900s to 2016. The one dot on the far right is James Cameron's Avatar. If you wish to see the
+          data set on kaggle, click this:
+          <a href="https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset">IMBD 5000 Movie Dataset</a>
+          <div style="display: flex; justify-content: center; margin-top:1em; margin-bottom:1em;">
             <img height="400" src="./images/cluster.png" />
           </div>
+          I chose <code>k = 4</code> and grouped my data into 4 clusters. The clusters don't have
+          any meaning associated with them until we go in and analyze them. We can see an obvious trend in here,
+          the red, blue, and purple groups are the movies that made less money while the green group contains
+          movies that made more than 200 million dollars in box office gross. Within the lesser gross group, we see
+          three clusters and they simply represent movies with good, average and bad ratings.
         </section>
       </div>
     </div>
