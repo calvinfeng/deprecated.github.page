@@ -1,4 +1,5 @@
 "use strict";
+
 const matchData = {
   "win": {
     "x1":[32.485,34.304,33.658,33.173,32.79,33.34,
@@ -50,63 +51,63 @@ const matchData = {
 
 /* global katex */
 // KaTex API
-let sigmoid = document.getElementById('sigmoid');
+const sigmoid = document.getElementById('sigmoid');
 katex.render("g(z) = \\frac{1}{1 + e^{-z}}", sigmoid);
 
-let hypo = document.getElementById('hypothesis');
+const hypo = document.getElementById('hypothesis');
 katex.render("h_{\\theta}(\\vec{x}) = g(\\vec{\\theta}\\cdot\\vec{x})", hypo);
 
-let thetaTx = document.getElementById('theta-T-x');
+const thetaTx = document.getElementById('theta-T-x');
 katex.render(`\\vec{\\theta}\\cdot\\vec{x} = \\theta^{T}x =
   \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}`,
 thetaTx);
 
-let prob = document.getElementById('probability');
+const prob = document.getElementById('probability');
 katex.render("h_{\\theta}(\\vec{x}) = P(y = 1 | x;\\theta)", prob);
 
-let costFunction = document.getElementById('cost-function');
+const costFunction = document.getElementById('cost-function');
 katex.render(`J(\\theta) = \\left[\\frac{\\lambda}{2m}\\sum_{j = 1}^{n}\\theta_j^{2}\\right]
 - \\left[ \\frac{1}{m}\\sum_{i = 1}^{m}y^{(i)}log(h_{\\theta}(x^{(i)}))
 + (1 - y^{(i)})log(1 - h_{\\theta}(x^{(i)})) \\right]`, costFunction);
 
-let gradient = document.getElementById('gradient');
+const gradient = document.getElementById('gradient');
 katex.render(`\\nabla J(\\theta) = \\frac{\\partial J}{\\partial \\theta_{0}}\\hat{\\theta_{0}}
 + \\frac{\\partial J}{\\partial \\theta_{1}}\\hat{\\theta_{1}}
 + \\frac{\\partial J}{\\partial \\theta_{2}}\\hat{\\theta_{2}}
 + \\frac{\\partial J}{\\partial \\theta_{3}}\\hat{\\theta_{3}}`, gradient);
 
-let gradientDescent = document.getElementById('gradient-descent');
+const gradientDescent = document.getElementById('gradient-descent');
 katex.render(`\\vec{\\theta} := \\vec{\\theta} - \\alpha\\nabla J(\\theta)`, gradientDescent);
 
-let algo1 = document.getElementById('algorithm-1');
+const algo1 = document.getElementById('algorithm-1');
 katex.render(`\\theta_{0} := \\theta_{0} - \\alpha \\frac{\\partial J}{\\partial \\theta_{0}}
 = \\theta_{0} - \\alpha \\left[\\frac{1}{m}\\sum_{i = 1}^{m}(h_{\\theta}(x^{(i)})
 - y^{(i)})x_{0}^{(i)} \\right]`,
 algo1);
 
-let algo2 = document.getElementById('algorithm-2');
+const algo2 = document.getElementById('algorithm-2');
 katex.render(`\\theta_{j} := \\theta_{j} - \\alpha \\frac{\\partial J}{\\partial \\theta_{j}}
 = \\theta_{j} - \\alpha \\left[\\frac{1}{m}\\sum_{i = 1}^{m}(h{\\theta}(x^{(i)})
 - y^{(i)})x_{j}^{(i)} + \\frac{\\lambda}{m}\\theta_{j}\\right]`, algo2);
 
-let params = document.getElementById('params');
+const params = document.getElementById('params');
 katex.render(`\\theta^{T}x = \\theta_{0} + \\theta_{1}x_{1} + \\theta_{2}x_{2} + \\theta_{3}x_{3}
   =9.294\\times 10^{-3} + 9.263\\times 10^{-3}x_{1} + 2.658x_{2} - 3.784\\times 10^{-1}x_{3}`,
   params);
 
-let prediction = document.getElementById('prediction');
+const prediction = document.getElementById('prediction');
 katex.render(`P(Win) = h_{\\theta}(\\vec{x}) = \\frac{1}{1 + e^{-\\theta^{T}x}}`, prediction);
 
 // Graph API
-let sectionWidth = $("#data-section").width();
-let layout = {
+const sectionWidth = $("#data-section").width();
+const layout = {
   title: "League of Legend Team Win/Loss",
   showlegend: true,
   autosize: true,
   width: sectionWidth,
 };
 
-let winners = {
+const winners = {
   name: 'Winning Team',
   mode: 'markers',
   type: 'scatter3d',
@@ -125,7 +126,7 @@ let winners = {
   z: matchData.win.x3,
 };
 
-let losers = {
+const losers = {
   name: 'Losing Team',
   mode: 'markers',
   type: 'scatter3d',
