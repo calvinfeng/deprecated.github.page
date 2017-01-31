@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- CDN import -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
 
     <!-- External library import -->
@@ -49,20 +49,21 @@
                     <img height="200"src="images/avatar.jpeg" id="avatar"/>
                 </div>
                 <h2>Calvin Feng</h2>
-                <p>JavaScript, jQuery, React.js, Ruby on Rails, Python and Machine Learning</p>
+                <p>JavaScript, React.js, Python, Django, Ruby on Rails, PostgreSQL, and Machine Learning</p>
                 <div class="skill-container">
-                    <div class="logo"><img height="50"src="images/javascript.png"/></div>
-                    <div class="logo"><img height="50"src="images/react.png"/></div>
-                    <div class="logo"><img height="50"src="images/html.png"/></div>
-                    <div class="logo"><img height="50"src="images/ruby.png"/></div>
-                    <div class="logo"><img height="50"src="images/rails.png"/></div>
-                    <div class="logo"><img height="50"src="images/postgresql.png"/></div>
-                    <div class="logo"><img height="50"src="images/python.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/html.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/javascript.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/react.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/ruby.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/rails.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/postgresql.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/python.png"/></div>
+                    <div class="logo"><img height="50"src="images/logos/machine-brain.png"/></div>
                 </div>
             </div>
         </section>
 
-        <!-- Wrapper -->
+        <!-- Page content wrapper -->
         <section id="wrapper">
             <!-- One -->
             <section id="one" class="wrapper spotlight style1">
@@ -183,7 +184,7 @@
                     </div>
                 </div>
             </section>
-
+            <!-- About me -->
             <div class="wrapper">
                 <div class="inner">
                     <section>
@@ -266,20 +267,14 @@
 </div>
 
 <!-- External library import -->
-<script src="assets/js/lib/skel.min.js"></script>
-<script src="assets/js/lib/jquery.min.js"></script>
-<script src="assets/js/lib/jquery.scrollex.min.js"></script>
-<script src="assets/js/lib/util.js"></script>
-<script src="assets/js/lib/main.js"></script>
+<script type="text/javascript" src="assets/js/lib/skel.min.js"></script>
+<script type="text/javascript" src="assets/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/lib/jquery.scrollex.min.js"></script>
+<script type="text/javascript" src="assets/js/lib/util.js"></script>
+<script type="text/javascript" src="assets/js/lib/main.js"></script>
+
 <!-- Custom script -->
-<script>
-    const london1 = document.getElementById('london-eqn-1');
-    const london2 = document.getElementById('london-eqn-2');
-    const bloch = document.getElementById('bloch');
-    katex.render(`\\frac{\\partial j_{s}}{\\partial t} =\\frac{n_{s}e^{2}}{m}E`, london1);
-    katex.render(`\\nabla\\times j_{s} = -\\frac{n_{s}e^{2}}{m}B`, london2);
-    katex.render(`\\psi(\\vec{r}) = u(r)e^{i k \\cdot \\vec{r}}`, bloch);
-</script>
+<script type="text/javascript" src="assets/js/custom/index.js"></script>
 
 </body>
 </html>
