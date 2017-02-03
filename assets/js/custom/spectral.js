@@ -3,6 +3,27 @@
 // Author(s): Calvin J. Feng
 
 (function() {
+
+    const matrixDerivative = `\\frac{\\partial}{\\partial\\vec{x}}
+        (\\space x^{T}A\\space x) = (A + A^{T})\\vec{x}`;
+    katex.render(matrixDerivative, document.getElementById('matrix-derivative'));
+
+    const symmetricMatrix = `A = A^{T}`;
+    katex.render(symmetricMatrix, document.getElementById('symmetric-matrix'));
+
+    const constraintDefinition = `g(x, y, z) = k`;
+    katex.render(constraintDefinition, document.getElementById('constraint-definition'));
+
+    const lagrangianDefinition = `L = f(x, y, z) - \\lambda (g(x, y, z) - k)`;
+    katex.render(lagrangianDefinition, document.getElementById("lagrangian-definition"));
+
+    const argminMatrix = `\\mathbf{argmin} \\space x^{T}A \\space x
+    \\space\\space\\space\\space \\space s.t. \\space\\space\\space\\space\\space x^{T}x = C`;
+    katex.render(argminMatrix, document.getElementById('argmin-matrix'));
+
+    const matrixLagrangian = `L = x^{T}A\\space x - \\lambda(x^{T}x - C)`;
+    katex.render(matrixLagrangian, document.getElementById('matrix-langrangian'));
+
     const adjacencyMatrix = `W = \\begin{bmatrix}
         1 & 1 & 1 & 0 & 0 \\\\
         1 & 1 & 1 & 0 & 0 \\\\
@@ -26,8 +47,9 @@
     const relationship = `R = \\sum \\omega_{i, j} (f_{i} - f_{j})^{2}`;
     katex.render(relationship, document.getElementById('relationship'));
 
-    const argminRelationship = `argmin \\space \\sum \\omega_{i, j} (f_{i} - f_{j})^{2}
+    const argminRelationship = `\\mathbf{argmin} \\space \\sum \\omega_{i, j} (f_{i} - f_{j})^{2}
         \\space \\space \\space w.r.t \\space \\space \\vec{f}`;
     katex.render(argminRelationship, document.getElementById('argmin-relationship'));
+
 
 })();
