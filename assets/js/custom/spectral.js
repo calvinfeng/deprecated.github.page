@@ -1,3 +1,7 @@
+"use strict";
+
+// Author(s): Calvin J. Feng
+
 (function() {
     const adjacencyMatrix = `W = \\begin{bmatrix}
         1 & 1 & 1 & 0 & 0 \\\\
