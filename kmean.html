@@ -3,10 +3,8 @@
     <title>Clustering</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <!-- External library import -->
     <link rel="stylesheet" href="assets/css/lib/main.css" />
-
     <!-- CDN import -->
     <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
@@ -20,7 +18,7 @@
                 <a href="https://github.com/calvinfeng/KMeans/blob/master/k_mean.py">source code</a>
             </nav>
         </header>
-
+        <!-- Title -->
         <section id="wrapper">
             <header>
                 <div class="inner">
@@ -43,14 +41,15 @@
                         suggest that the algorithm is averaging some values and we shall see what is it averaging soon.
                     </p>
                 </section>
-
                 <section>
                     <h3 class="major">Algorithm</h3>
                     <p>
                         The algorithm is broken down to two major steps, <strong>assignment</strong> and <strong>update</strong>
                     </p>
                     <h4>Initialization</h4>
-                    We need to randomly select <strong>k</strong> data points to be our centroids
+                    <div>
+                        We need to randomly select <strong>k</strong> data points to be our centroids
+                    </div>
                     <code
                         data-gist-id="8068418e47936544ed6de55b9b7cdb12"
                         data-gist-hide-footer="true"
@@ -58,10 +57,12 @@
                         data-gist-line="1-9">
                     </code>
                     <h4>Assignment Step</h4>
-                    Once the centroids are selected, we need to assign every single data point to its nearest
-                    centroid. <code>centroids</code> is an array. We iterate through every data point and find
-                    a centroid that is geometrically closest to it. Then we assign a label to the data point, in my case,
-                    I am using the index of the centroids array as label.
+                    <div>
+                        Once the centroids are selected, we need to assign every single data point to its nearest
+                        centroid. <code>centroids</code> is an array. We iterate through every data point and find
+                        a centroid that is geometrically closest to it. Then we assign a label to the data point, in my case,
+                        I am using the index of the centroids array as label.
+                    </div>
                     <code
                         data-gist-id="8068418e47936544ed6de55b9b7cdb12"
                         data-gist-hide-footer="true"
@@ -75,10 +76,12 @@
                         data-gist-line="23-32">
                     </code>
                     <h4>Update Step</h4>
-                    After the label has been assigned, we need to re-position the centroids by averaging the location
-                    of all labeled data points. For example, <code>data[0]</code> and <code>data[1]</code> have been labeled
-                    to <code>centroids[0]</code>. The position of <code>centroids[0]</code> will be re-assigned to the
-                    averaged location of the two data points.
+                    <div>
+                        After the label has been assigned, we need to re-position the centroids by averaging the location
+                        of all labeled data points. For example, <code>data[0]</code> and <code>data[1]</code> have been labeled
+                        to <code>centroids[0]</code>. The position of <code>centroids[0]</code> will be re-assigned to the
+                        averaged location of the two data points.
+                    </div>
                     <code
                         data-gist-id="8068418e47936544ed6de55b9b7cdb12"
                         data-gist-hide-line-numbers="true"
@@ -91,12 +94,13 @@
                         data-gist-hide-footer="true"
                         data-gist-line="34-51">
                     </code>
-
                 </section>
                 <section>
                     <h3 class="major">Putting it together</h3>
-                    We will run the assignment and update step repeatedly in a while loop. The loop breaking condition is that
-                    when the update does not produce any new changes, that is when centroids and cluster averages are identical.
+                    <div>
+                        We will run the assignment and update step repeatedly in a while loop. The loop breaking condition is that
+                        when the update does not produce any new changes, that is when centroids and cluster averages are identical.
+                    </div>
                     <code
                         data-gist-id="8068418e47936544ed6de55b9b7cdb12"
                         data-gist-hide-line-numbers="true"
@@ -104,31 +108,33 @@
                         data-gist-line="1-21">
                     </code>
                     <h3 class="major">Example</h3>
-                    The following is a movie rating dataset from IMBD. This is a movie rating versus gross plot.
-                    The individual data point represents a movie. The dataset contains 5000 movies produced from early
-                    1900s to 2016. The one dot on the far right is James Cameron's Avatar. If you wish to see the
-                    data set on kaggle, click this:
-                    <a href="https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset">IMBD 5000 Movie Dataset</a>
-                    <div style="display: flex; justify-content: center; margin-top:1em; margin-bottom:1em;">
-                        <img height="400" src="./images/cluster.png" />
+                    <div>
+                        The following is a movie rating dataset from IMBD. This is a movie rating versus gross plot.
+                        The individual data point represents a movie. The dataset contains 5000 movies produced from early
+                        1900s to 2016. The one dot on the far right is James Cameron's Avatar. If you wish to see the
+                        data set on kaggle, click this:
+                        <a href="https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset">
+                            IMBD 5000 Movie Dataset
+                        </a>
+                        <div style="display: flex; justify-content: center; margin-top:1em; margin-bottom:1em;">
+                            <img height="400" src="./images/cluster.png" />
+                        </div>
+                        I chose <code>k = 4</code> and grouped my data into 4 clusters. The clusters don't have
+                        any meaning associated with them until we go in and analyze them. We can see an obvious trend in here,
+                        the red, blue, and purple groups are the movies that made less money while the green group contains
+                        movies that made more than 150 million dollars in box office gross. Within the lesser gross group, we see
+                        three clusters and they simply represent movies with good, average and bad ratings.
                     </div>
-                    I chose <code>k = 4</code> and grouped my data into 4 clusters. The clusters don't have
-                    any meaning associated with them until we go in and analyze them. We can see an obvious trend in here,
-                    the red, blue, and purple groups are the movies that made less money while the green group contains
-                    movies that made more than 150 million dollars in box office gross. Within the lesser gross group, we see
-                    three clusters and they simply represent movies with good, average and bad ratings.
                 </section>
             </div>
         </div>
     </div>
-
     <!-- External library import -->
     <script type="text/javascript" src="assets/js/lib/skel.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery.scrollex.min.js"></script>
     <script type="text/javascript" src="assets/js/lib/util.js"></script>
     <script type="text/javascript" src="assets/js/lib/main.js"></script>
-
     <!-- Custom import -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.4/gist-embed.min.js"></script>
 </body>
