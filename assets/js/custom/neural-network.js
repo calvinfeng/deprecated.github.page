@@ -1,8 +1,8 @@
 "use strict";
 
 // Author(s): Calvin J. Feng
-/* global katex hljs */
 
+/* global katex hljs */
 (function() {
     hljs.initHighlightingOnLoad();
     const sigmoid = `g(z) = \\frac{1}{1 + e^{-z}}`;

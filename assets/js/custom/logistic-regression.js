@@ -1,5 +1,7 @@
 "use strict";
 
+// Author(s): Calvin J. Feng
+
 const matchData = {
   "win": {
     "x1":[32.485,34.304,33.658,33.173,32.79,33.34,
