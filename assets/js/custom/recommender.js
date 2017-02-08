@@ -5,11 +5,12 @@
 (function() {
     /* global katex */
     console.log("Hello World");
-    const ratingAggregation = `r_{u,i} = \\bar{r}_{u} +k \\sum_{u' \\in N} sim(u, u') r_{u', i}`;
+    const ratingAggregation = `r_{u,i} = \\bar{r}_{u} + \\gamma
+        \\sum_{u' \\in K} sim(u, u') r_{u', i}`;
     katex.render(ratingAggregation, document.getElementById('rating-aggregation'));
 
-    const kFactor = "k = (\\sum_{u' \\in N} \\left | sim(u, u') \\right |)^{-1}";
-    katex.render(kFactor, document.getElementById('k-factor'));
+    const gammaFactor = "\\gamma = (\\sum_{u' \\in K} \\left | sim(u, u') \\right |)^{-1}";
+    katex.render(gammaFactor, document.getElementById('gamma-factor'));
 
     const simCoeff = `sim(u, v) = C^{-1}\\sum_{i\\in I_{u} \\cap I_{v}}(r_{u, i} - \\bar{r}_u)
         (r_{v,i} - \\bar{r}_v)`;

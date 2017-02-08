@@ -33,15 +33,71 @@
                 <!-- Main Content -->
                 <div class="inner">
                     <section>
-                        <h3 class="major">Section 1</h3>
-                        <h4>Sub section</h4>
+                        <h2 class="major">Consilium</h3>
                         <p>
-                            Lorem ipsum dolor sit amet.
+                            Consilium is a movie recommender web application. It starts by asking new users to rate movies they have seen. The data
+                            will then be used to determine users' taste and preference for movies. There are two distinct algorithms powering the
+                            application and they both belong to the class of collaborative filtering.
                         </p>
-                        <p id="rating-aggregation"></p>
-                        <p id="k-factor"></p>
-                        <p id="sim-coeff"></p>
-                        <p id="sim-norm"></p>
+                        <h3>So what is collaborative filtering?</h4>
+                        <p>
+                            Imagine you are shopping for a new pair of shoes. There are many seemingly trendy options to pick from. You are
+                            having a hard time to decide which style and which color to go for. How do you resolve a dilemma like this? You'd start
+                            asking people for second opinion. You'd ask people who share similar taste and preference with you because chance is,
+                            if they like something, you will also like it. Collaborative filtering is a process of grouping similar users together
+                            and filter for most liked items within the group, i.e. grouping you with your peers and recommend you products that are most liked
+                            by your peers.
+                        </p>
+
+                        <h2 class="major">k-Nearest Neighbor</h3>
+                        <p>
+                            The first algorithm we need to talk about is called k-Nearest Neighbor. It's basically consulting the k number of users that are most similar
+                            to you in terms of taste and preference for movies. Using those k number of users as input, the algorithm will make a rating prediction on a
+                            given movie.
+                        </p>
+                        <h4>What does "similar" mean?</h4>
+                        <p>
+                            We can mathematically quantify how similar two users are by looking at their rating patterns on products (in our case, it's movies.)
+                        </p>
+
+                        <h3>Mathematical Formulations</h4>
+                        <blockquote>
+                            <p>
+                            I<sub>u</sub> is the set of movies that user <strong>u</strong> has rated and I<sub>v</sub> is the set of movies that user <strong>v</strong>
+                                has rated. The notation is saying that, iterate through teh set of movies that both users have rated.
+                            </p>
+                            <p id="sim-coeff"></p>
+                            <p>
+                                C is the correlation normalization constant
+                            </p>
+                            <p id="sim-norm"></p>
+                            <p>
+                                The similarity function is known as the <strong>Pearson coefficient</strong>
+                            </p>
+                        </blockquote>
+                        <p>
+                            Pearson coefficient gives a value between -1 and 1. It indicates strong positive correlation with +1 and strong negative correlation with -1.
+                            Once we have a way to quantify similarity, we can then select the <strong>K</strong> most similar neighbors for a given user.
+                            Similarity is serving as a statistical weight, it allows us to compute the <i>collaborative</i> opinions of neighbors
+                        </p>
+                        <blockquote>
+                            <p>
+                                The rating prediction for user <strong>u</strong> on movie <strong>i</strong> is given by the following expression:
+                            </p>
+                            <p id="rating-aggregation"></p>
+                            <p>
+                                The base line rating is the average movie rating of user <strong>u</strong>. For example, if user <strong>u</strong> has rated 3
+                                movies e.g. movie A - 5 stars, ,movie B - 5 stars, and movie C - 2 stars, he has an average rating of 4 stars and that is his baseline.
+                            </p>
+                            <p id="gamma-factor"></p>
+                            <p>
+                                Gamma is a normalization constant
+                            </p>
+                        </blockquote>
+                    </section>
+                    <section>
+                        <h2 class="major">Sparse Matrix SVD</h2>
+                        <h4>SVD as in Singular Value Decomposition</h3>
                         <p id="rating-matrix"></p>
                         <p id="sparse-matrix"></p>
                         <p id="matrix-decomposition"></p>
@@ -53,10 +109,6 @@
                         <p id="dj-df"></p>
                         <p id="dj-dtheta"></p>
                         <p id="prediction"></p>
-
-                    </section>
-                    <section>
-                        <h3 class="major">Section 2</h3>
                         <h4>Sub section</h4>
                         <p>
                             Lorem ipsum dolor sit amet.
