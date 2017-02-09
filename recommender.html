@@ -61,6 +61,7 @@
                         </p>
 
                         <h3>Mathematical Formulations</h4>
+                        <h4>Computing similarity</h4>
                         <blockquote>
                             <p>
                             I<sub>u</sub> is the set of movies that user <strong>u</strong> has rated and I<sub>v</sub> is the set of movies that user <strong>v</strong>
@@ -80,6 +81,7 @@
                             Once we have a way to quantify similarity, we can then select the <strong>K</strong> most similar neighbors for a given user.
                             Similarity is serving as a statistical weight, it allows us to compute the <i>collaborative</i> opinions of neighbors
                         </p>
+                        <h4>Making rating prediction</h4>
                         <blockquote>
                             <p>
                                 The rating prediction for user <strong>u</strong> on movie <strong>i</strong> is given by the following expression:
@@ -94,11 +96,36 @@
                                 Gamma is a normalization constant
                             </p>
                         </blockquote>
+                        <p>
+                            Given a large data set of user ratings on movies, we can easily compute movie rating predictions for new users that are coming to our system.
+                            Once we find highly rated movies, we can push them as product recommendations to users. <strong>However</strong>, kNN suffers from scalability
+                            problem. The data set we use contains 260,000 users. For every item we wish to recommend, we need to iterate through 260,000 users to find the k
+                            most similar users who also have rated the item. Plus, k-Nearest-Neighbor isn't a real machine learning algorithm. It's time to look at the next
+                            algorithm.
+                        </p>
                     </section>
                     <section>
                         <h2 class="major">Sparse Matrix SVD</h2>
-                        <h4>SVD as in Singular Value Decomposition</h3>
+                        <h4>SVD as in Singular Value Decomposition</h4>
+                        <p>
+                            Singular value decomposition of a matrix <strong>A</strong> is the factorization of <strong>A</strong> into
+                            a product of three matrices A = UDV<sup>T</sup> where the columns of U and V are orthonormal and matrix D is
+                            diagonal with positive real numbers. The orthorgonality of the column vectors is a strong property; they form the bases of
+                            reconstructing matrix A. However, not all columns contain equal amount of information of the original matrix A. The amount of
+                            information each column encodes can be found in the diagonal entries of D matrix. SVD allows us to low rank factorizes
+                            a matrix. That means, it allows us to get rid of information of little importance.
+                        </p>
+                        <h3>Representation</h3>
+                        <p>
+                            So far what we have gone over is still very vague, let's dive into the movie example.
+                        </p>
+                        <p>
+                            Imagine that we represent movie ratings as a matrix
+                        </p>
                         <p id="rating-matrix"></p>
+                        <h4>
+                            Work in progress...
+                        </h4>
                         <p id="sparse-matrix"></p>
                         <p id="matrix-decomposition"></p>
                         <p id="dimension"></p>
@@ -109,7 +136,6 @@
                         <p id="dj-df"></p>
                         <p id="dj-dtheta"></p>
                         <p id="prediction"></p>
-                        <h4>Sub section</h4>
                         <p>
                             Lorem ipsum dolor sit amet.
                         </p>
