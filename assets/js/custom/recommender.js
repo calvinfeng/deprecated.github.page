@@ -42,6 +42,9 @@
         \\end{bmatrix}`;
     katex.render(sparseMatrix, document.getElementById("sparse-matrix"));
 
+    const singleItemPrediction = `R_{sparse}[i][j]\\mapsto prediction`;
+    katex.render(singleItemPrediction, document.getElementById("single-item-prediction"));
+
     const matrixDecomposition = `R =\\begin{bmatrix}
         \\theta_{user_{1},1} & \\theta_{user_{1},2} & \\theta_{user_{1},3} &
         \\theta_{user_{1},4} & \\theta_{user_{1},5}\\\\
@@ -69,7 +72,7 @@
         \\end{bmatrix}`;
     katex.render(matrixDecomposition, document.getElementById('matrix-decomposition'));
 
-    const dimension = `N \\times M = (N \\times p)(p \\times f)(f \\times m)`;
+    const dimension = `N \\times m = (N \\times p)(p \\times f)(f \\times m)`;
     katex.render(dimension, document.getElementById('dimension'));
 
     const linearCombination = `R_{i,j} =

@@ -123,13 +123,48 @@
                             Imagine that we represent movie ratings as a matrix
                         </p>
                         <p id="rating-matrix"></p>
-                        <h4>
-                            Work in progress...
-                        </h4>
+                        <p>
+                            The column entries represent user, going from 1 to N and the row entries represent movies
+                            going from 1 to m. If this matrix were to be filled completely with rating values, it means that
+                            every user must have rated all <strong>m</strong> movies in the database.
+                        </p>
+                        <p>
+                            But of course, that is not the case. In reality, the matrix is a sparse, that is, it's filled
+                            with missing rating values.
+                        </p>
                         <p id="sparse-matrix"></p>
+                        <p>
+                            Suppse there is a machine learning algorithm, it is responsible for figuring out
+                            what these missing rating values should be. The prediction for the missing values of this matrix is what we use
+                            to decide whether a movie is recommendable to user or not.
+                        </p>
+                        <h4>Prediction for user i on movie j</h4>
+                        <p id="single-item-prediction"></p>
+                        <h3>
+                            Decomposition
+                        </h3>
+                        <p>
+                            Here is how we treat the problem. We imagine that the rating matrix is filled. If we were to perform singular value
+                            decomposition on it, we should expect the following:
+                        </p>
                         <p id="matrix-decomposition"></p>
                         <p id="dimension"></p>
+                        <p><strong>NOTE:</strong> N = p and f = m
+                        <p>
+                            The left matrix is a N by N real unitary matrix, the middle matrix is a diagonal matrix filled with singular real values,
+                            and the right matrix is a m by m real unitary matrix. Each row in the left matrix represents a vector of subjective taste or
+                            preference for user <strong>i</strong>. Each column in the right matrix represents a vector of latent feature for movie. A
+                            latent feature is like a hidden feature that is not apparent to our common intuition but it does represent correlation in
+                            data. Each diagonal value in the middle matrix represents a weight for a particular movie feature and user preference.
+                        </p>
                         <p id="linear-combination"></p>
+                        <p>
+                            Essentially each element of the rating matrix is represented by the linear combination
+                            of user preference, movie latent feature, and weight
+                        </p>
+                    </section>
+                    <section>
+                        <h2 class="major">Machine Learning</h2>
                         <p id="cost-function"></p>
                         <p id="objective"></p>
                         <p id="big-theta"></p>
@@ -139,8 +174,6 @@
                         <p>
                             Lorem ipsum dolor sit amet.
                         </p>
-                    </section>
-                    <section>
                         <h3 class="major">Section 3</h3>
                         <h4>Sub section</h4>
                         <p>
