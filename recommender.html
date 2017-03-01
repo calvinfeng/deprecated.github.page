@@ -165,9 +165,45 @@
                     </section>
                     <section>
                         <h2 class="major">Machine Learning</h2>
+                        <p>
+                            The next step is known as the incremental SVD algorithm developed by Sarwar, Karypis, et al. It was famously used for
+                            the Netflix Recommender System competition in 2007. I can't believe it's already been 10 years...
+                        </p>
+
+                        <h3>How much error there is</h3>
                         <p id="cost-function"></p>
+                        <p>
+                            Please note that the f and theta in above expression are vectors. When I multiply theta with f, it means dot product
+                            of the two vectors. The cost function captures the error between prediction and actual recorded rating value, plus some
+                            regularization factors at the end to prevent overfitting.
+                        </p>
+                        <h3>Where did Lambda go?</h3>
+                        <p>
+                            For simplicity of the computation, the lambda is actually absorbed by the preference vector (theta). In standard SVD,
+                            these singular values actually represent the statistical weight of the latent factor (preference and feature.) In the incremental
+                            SVD algorithm, we don't actually have the information, i.e. the numerical values of these singular values.
+                        </p>
+                        <p>
+                            So we will have to guess...
+                        </p>
+                        <p>
+                            First, try to implement the algorithm with preference/feature vector length = 2, length = 3, length = 5, length = 10, length = 20, preference/feature etc...
+                            Then, compare and figure out which yields the best result. As the dimension of the preference/feature vector increases, computation becomes more difficult.
+                            I have discovered that result doesn't seem to improve after length = 8, that is keeping only the first 8 singular values.
+                        </p>
+                        <h3>Optimization Objective</h3>
+                        <p>
+                            As usual, now we have defined what we are trying to optimize. We want to minimize the prediction error. And to do that,
+                            we need to train the function with our <a href="https://grouplens.org/datasets/movielens/"><strong>mega</strong></a> data set.
+                            How do we train it? Use the following objective:
+                        </p>
                         <p id="objective"></p>
                         <p id="big-theta"></p>
+                        <h3>Gradient Descent</h3>
+                        <p>
+                            The next step is to take partial derivative of the cost function with respect to every entries of every preference vector and feature vector.
+                            Then proceed to update each parameter with the following procedure:
+                        </p>
                         <p id="dj-df"></p>
                         <p id="dj-dtheta"></p>
                         <p id="prediction"></p>
