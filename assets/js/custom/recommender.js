@@ -82,9 +82,9 @@
 
     const costFunction = `J(f^{(1)}, f^{(2)}, f^{(3)}, ..., f^{(m)},
         \\theta^{(1)}, \\theta^{(2)}, \\theta^{(3)}, ..., \\theta^{(N)}) =
-        \\frac{1}{2}\\sum_{i, j \\in R} (\\theta^{(j)}f^{(i)} - r^{(i,j)})^{2} +
-        \\frac{\\lambda}{2}\\sum_{i}^{m}\\sum_{k}^{n} (f_{k}^{(i)})^{2} +
-        \\frac{\\lambda}{2}\\sum_{j}^{N}\\sum_{k}^{n} (\\theta_{k}^{(j)})^{2}`;
+        \\frac{1}{2}\\sum_{i, j \\in R} (\\theta^{(i)}f^{(j)} - r^{(i,j)})^{2} +
+        \\frac{\\lambda}{2}\\sum_{j}^{m}\\sum_{k}^{n} (f_{k}^{(j)})^{2} +
+        \\frac{\\lambda}{2}\\sum_{i}^{N}\\sum_{k}^{n} (\\theta_{k}^{(i)})^{2}`;
     katex.render(costFunction, document.getElementById('cost-function'));
 
     const objective = `Objective:\\,minimize\\,J\\,with\\,respect\\,to\\:\\Theta,\\:F`;
@@ -95,14 +95,18 @@
     katex.render(bigTheta, document.getElementById('big-theta'));
 
 
-    const djDf = `f_{k}^{(i)} := f_{k}^{(i)} - \\alpha \\frac{\\partial J}{\\partial f_{k}^{(i)}}`;
-    katex.render(djDf, document.getElementById('dj-df'));
+    const featureUpdate = `f_{k}^{(j)} := f_{k}^{(j)} -
+        \\alpha (\\frac{\\partial J}{\\partial f_{k}^{(j)}} + \\lambda f_{k}^{(j)})`;
+    katex.render(featureUpdate, document.getElementById('feature-update'));
 
-    const djDtheta = `\\theta_{k}^{(i)} := \\theta_{k}^{(i)} -
-        \\alpha \\frac{\\partial J}{\\partial \\theta_{k}^{(i)}}`;
-    katex.render(djDtheta, document.getElementById('dj-dtheta'));
+    const preferenceUpdate = `\\theta_{k}^{(i)} := \\theta_{k}^{(i)} -
+        \\alpha (\\frac{\\partial J}{\\partial \\theta_{k}^{(i)}} + \\lambda \\theta_{k}^{(i)})`;
+    katex.render(preferenceUpdate, document.getElementById('preference-update'));
 
-    const prediction = `R_{prediction} = \\Theta\\Lambda F^{T} =\\begin{bmatrix}
+    const prediction = `R_{prediction} = \\Theta\\Lambda F^{T}`;
+    katex.render(prediction, document.getElementById('prediction'));
+
+    const predictionMatrixForm = `R_{prediction}=\\begin{bmatrix}
         \\lambda_{1}\\theta_{user_{1},1} & \\lambda_{2}\\theta_{user_{1},2} &
         \\lambda_{3}\\theta_{user_{1},3} & \\lambda_{4}\\theta_{user_{1},4} &
         \\lambda_{5}\\theta_{user_{1},5}\\\\
@@ -126,7 +130,12 @@
         f_{4, movie_{1}} & f_{4, movie_{2}} & f_{4, movie_{3}} & f_{4, movie_{4}} & f_{4, movie_{5}}\\\\
         f_{5, movie_{1}} & f_{5, movie_{2}} & f_{5, movie_{3}} & f_{5, movie_{4}} & f_{5, movie_{5}}
         \\end{bmatrix}`;
-    katex.render(prediction, document.getElementById('prediction'));
+    katex.render(predictionMatrixForm, document.getElementById('prediction-matrix-form'));
 
+    const djDf = `\\frac{\\partial J}{\\partial f_{k}^{(j)}} = \\sum_{i} (\\theta^{(i)} \\cdot f^{(j)} - rating^{(i, j)}) \\theta^{(i)}_{k}`;
+    katex.render(djDf, document.getElementById('dj-df'));
+
+    const djDtheta = `\\frac{\\partial J}{\\partial \\theta_{k}^{(i)}} = \\sum_{j} (\\theta^{(i)} \\cdot f^{(j)} - rating^{(i, j)}) f^{(j)}_{k}`
+    katex.render(djDtheta, document.getElementById('dj-dtheta'));
 
 }());
