@@ -3,6 +3,9 @@
 // Author(s): Calvin J. Feng
 
 (function() {
+    /* global katex */
+    const NJW = `\\mathbf{argmin}\\space f^{T}D^{-\\frac{1}{2}}WD^{-\\frac{1}{2}}f`;
+    katex.render(NJW, document.getElementById('ng-jordan-weiss'));
 
     const matrixDerivative = `\\frac{\\partial}{\\partial\\vec{x}}
         (\\space x^{T}A\\space x) = (A + A^{T})\\vec{x}`;
