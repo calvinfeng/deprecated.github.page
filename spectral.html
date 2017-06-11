@@ -39,29 +39,157 @@
                             Ng-Jordan-Weiss's normalized formulation of spectral clustering
                         </p>
                         <p id="ng-jordan-weiss"></p>
+                        <p>
+                            Before we proceed, we need to be aware of the following mathematical rules and identities:
+                        </p>
+                        <h3>Vector Derivative</h3>
+                        <p id="matrix-derivative"></p>
+                        <p>
+                            Tranpose of x vector times a matrix A times the <strong>x</strong> vector is a scalar property.
+                            Now if we take derivative of this scalar with respect to a <strong>x</strong> vector, we will get
+                            a vector in the end.
+                        </p>
+                        <p>
+                            If matrix <strong>A</strong> is symmetric
+                        </p>
+                        <p id="symmetric-matrix"></p>
+                        <p>
+                            Then the expression would become
+                        </p>
+                        <p id="sym-matrix-derivative"></p>
+                        <h3>Lagrange Multipler</h3>
+                        <p>
+                            When we need to optimize a function of (x, y, z) while subjecting it to a constraint <strong>g</strong>.
+                            Our lagrange multiplier can be formulated as follows
+                        </p>
+                        <p id="lagrangian-definition"></p>
+                        <p id="constraint-definition"></p>
+                        <p>
+                            We optimize by setting the gradient of our Lagrangian to zero and then solve for each variable
+                        </p>
+                        <p id="lagrangian-gradient"></p>
+                        <h3>Optimize our Matrix</h3>
+                        <p>
+                            Now if we put the previous two ideas together, we can then proceed to optimize the following
+                            the following vector:
+                        </p>
+                        <p id="a-vector"></p>
+                        <p>
+                            We wish to minimize the vector under the constraint that the dot product of the <strong>x</strong>
+                            vectors is equal to a scalar constant
+                        </p>
+                        <p id="argmin-matrix"></p>
+                        <p>
+                            So let's plug it into our Lagrangian!
+                        </p>
+                        <p id="matrix-langrangian"></p>
+                        <p>
+                            Let's assume that <strong>A</strong> is a positive semi-definite matrix, it means that we will
+                            get min from function optimization and assume that <strong>A</strong> is symmetric because it
+                            will be the case in the next section when we apply this concept to spectral clustering. Now
+                            let's take the derivative with respecet to <strong>x</strong> vector and lambda:
+                        </p>
+                        <p id="l-x-1"></p>
+                        <p id="l-lambda"></p>
+                        <p>
+                            The second derivative doesn't tell us much because it is simply re-stating the constraint,
+                            but there is something magical about the first equation. And if we re-write it, we get the
+                            following:
+                        </p>
+                        <p id="l-x-2"></p>
+                        <p>
+                            This is telling us, if we were to optimize the original vector we began with, we simply need
+                            to find eigenvectors of matrix <strong>A</strong> and those are the best candidates for
+                            optimizing the original vector expression.
+                        </p>
                     </section>
                     <section>
-                        <h3 class="major">Some equations</h3>
-                        <h4>Title</h4>
-                        <p> Work in progress, please wait...</p>
-                        <p id="argmin-matrix"></p>
-                        <p id="matrix-langrangian"></p>
-                        <p id="constraint-definition"></p>
-                        <p id="lagrangian-definition"></p>
-                        <p id="symmetric-matrix"></p>
-                        <p id="matrix-derivative"></p>
+                        <h3 class="major">Spectral Clustering</h3>
+                        <p>
+                            Now, let's get down to the meat.
+                        </p>
+                        <h3>Similarity Graph</h3>
+                        <p>
+                            Suppose we are given 5 vertices, and we denote each connection with a value of 1. We can easily
+                            construct an adjacency matrix looking at like this:
+                        </p>
                         <p id="adjacency-matrix"></p>
-                        <p id="feature-vector"></p>
+                        <p>
+                            We can also use a Gaussian kernel to represent the weight of each connection. So instead of 1,
+                            we can assign it a value based on distance
+                        </p>
                         <p id="gaussian-kernel"></p>
+                        <p>
+                            We also call it the weight matrix and the degree of a vertex d[i] can be defined as:
+                        </p>
+                        <p id="vertex-degree"></p>
+                        <p>
+                            A degree matrix would look like this:
+                        </p>
+                        <p id="degree-matrix"></p>
+                        <h3>Optimization Objective</h3>
+                        <p>
+                            With the same given 5 vertices, we can easily visualize them to be like this
+                        </p>
+                        <img height="150" src="./images/connected_vertices.png" />
+                        <p>
+                            With a quick glance, it is easy to identify that there are two clusters of nodes. However, from
+                            a mathematical perspective, we need a formal way to quantify what is a group. Let's define A
+                            to be a subset of V which is the set of all vertices. A + Not A will give us V because a vertex
+                            can either be in A or not in A. For this particular example, we can say vertex 1, 2 and 3 are in
+                            A, while vertex 4 and 5 are in Not A.
+                        </p>
+                        <p>
+                            We can use a vector to represent this statement and let's called it the feature vector
+                        </p>
+                        <p id="feature-vector"></p>
+                        <p>
+                            The objective of spectral clustering is that we want to find a feature vector such that the relationship
+                            between A and not A is at minimum. We can quantify relationship with the following expression.
+                        </p>
                         <p id="relationship"></p>
+                        <p>
+                            In summary this is our optimization objective
+                        </p>
                         <p id="argmin-relationship"></p>
+                        <h3>Derive Laplacian</h3>
+                        <p>
+                            Expand the previous expression
+                        </p>
+                        <p id="expanded-relationship"></p>
+                        <p>
+                            Since <strong>W</strong> is symmetric and iterating through i is the same as iterating through j.
+                            The first and last term of the expression can be shortened to the following:
+                        </p>
+                        <p id="f-d-f"></p>
+                        <p>
+                            The middle term can be expressed as follows:
+                        </p>
+                        <p id="f-w-f"></p>
+                        <p id="f-w-f-matrix"></p>
+                        <p>
+                            Therefore, put everything together, the relationship can be expressed as:
+                        </p>
+                        <p id="derived-relationship"></p>
+                        <p>
+                            And we call it the Laplacian matrix
+                        </p>
+                        <p id="laplacian"></p>
+                        <p id="laplacian-objective"></p>
+                        <p>
+                            In order to find the feature vectors such that the relationship between two or more clusters
+                            will be minimized, we simply need to find the eigenvectors of a Laplacian matrix
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="major">In Practice</h3>
                     </section>
                 </div>
                 <!-- Footer -->
                 <section id="footer">
                     <div class="inner">
                         <ul class="copyright">
-                            <li>&copy; Untitled Inc. All rights reserved.</li><li>Author: <a href="http://github.com/calvinfeng">Calvin Feng</a></li>
+                            <li>Author: <a href="http://github.com/calvinfeng">Calvin Feng</a></li>
                         </ul>
                     </div>
                 </section>
